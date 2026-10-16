@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { orePerKwh, kwhPerMiljon, hardvaraPerMiljon, billigasteFonster, lasStatistik, tal } from '../calc.js';
+import { orePerKwh, kwhPerMiljon, hardvaraPerMiljon, billigasteFonster, lasStatistik, tal, uppskatta } from '../calc.js';
 
 test('price per kWh adds fees before VAT', () => {
   const p = orePerKwh({ spot: 50, paslag: 5, nat: 25, energiskatt: 36, moms: 0.25, allt: true });
@@ -67,6 +67,29 @@ test('parses LM Studio footer', () => {
 
 test('returns null for text without statistics', () => {
   assert.equal(lasStatistik('hej hej'), null);
+});
+
+test('estimates speed from bandwidth and power from TGP', () => {
+  const rtx4090 = { gb: 24, bw: 1008, tgp: 450 };
+  const e = uppskatta(rtx4090, { total: 8, aktiva: 8 });
+  assert.equal(e.tps, Math.round((1008 * 0.65) / 4.8)); // 137, measured cards land near 130
+  assert.equal(e.w, 415);
+  assert.equal(e.ryms, true);
+  assert.equal(uppskatta(rtx4090, { total: 70, aktiva: 70 }).ryms, false);
+  assert.equal(uppskatta(rtx4090, { total: 70, aktiva: 70 }).tps, null);
+});
+
+test('MoE speed follows active weights, fit follows all weights', () => {
+  const mac = { gb: 96, bw: 546, tgp: 130, system: true };
+  const moe = uppskatta(mac, { total: 117, aktiva: 5.1 });
+  assert.equal(moe.ryms, true);
+  assert.equal(moe.w, 130);
+  assert.ok(moe.tps > 100);
+  assert.equal(uppskatta({ gb: 24, bw: 1008, tgp: 450 }, { total: 117, aktiva: 5.1 }).ryms, false);
+});
+
+test('unknown hardware gives no estimate', () => {
+  assert.deepEqual(uppskatta({ okand: true }, { total: 8, aktiva: 8 }), { w: null, tps: null, ryms: null, gb: null });
 });
 
 test('reads Swedish and English decimals', () => {

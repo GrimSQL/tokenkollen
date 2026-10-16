@@ -56,7 +56,7 @@ Hela listan står i RESAN.md. Ett urval:
 ## Tokens
 
 - Lokalt: 0 (ingen lokal modell användes i bygget).
-- Molnet: ≈ 24,4 miljoner, summerat ur Claude Codes sessionslogg. Nästan allt (23,7 M) är cache-läsningar, alltså samtalet som skickas om vid varje steg; själva svaren var 0,1 M output-tokens.
+- Molnet: ≈ 0,85 miljoner, summerat ur Claude Codes sessionslogg utan cache-läsningar (cirka 40 M, samma samtal som skickas om vid varje steg).
 
 ## Bilder att ladda upp (1-10)
 

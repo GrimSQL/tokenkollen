@@ -310,6 +310,7 @@ input[readonly], textarea[readonly] { background: transparent; }
 }
 .kryss input:checked + span { border-color: var(--ror-text); }
 .kryss input:focus-visible + span { outline: 2.5px solid var(--black); outline-offset: 2px; }
+.kryss.ryms-inte span { border-style: dashed; color: var(--black-2); }
 .kryss small { font-weight: 450; color: var(--black-2); font-size: 0.78rem; }
 .kryss-lang { margin: 0.2rem 0 0.9rem; }
 .kryss-lang span { font-weight: 500; align-items: flex-start; padding-block: 0.55rem; }

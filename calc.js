@@ -19,6 +19,28 @@ export function hardvaraPerMiljon({ pris, ar, timmarPerDag, tps }) {
   return pris / (tokens / 1e6);
 }
 
+export const GB_PER_MILJARD = 0.6; // Q4_K_M weights incl. overhead
+export const VERKNINGSGRAD = 0.65; // share of peak memory bandwidth reached while generating
+export const KORTETS_ANDEL = 0.7; // a memory-bound card draws about this share of its TGP
+export const RESTEN_AV_DATORN = 100; // W for CPU, board, RAM, disks and fans
+const RESERV_GB = 1.5; // context cache and runtime
+
+// Estimates generation speed and wall power for a model on a piece of hardware from published
+// specs. Generation reads every active weight once per token, so speed is bandwidth-bound.
+export function uppskatta(hw, modell) {
+  if (!hw || !modell || !(hw.bw > 0)) return { w: null, tps: null, ryms: null, gb: null };
+  const gb = modell.total * GB_PER_MILJARD;
+  const ryms = gb + RESERV_GB <= hw.gb;
+  const tps = (hw.bw * VERKNINGSGRAD) / (modell.aktiva * GB_PER_MILJARD);
+  const w = hw.system ? hw.tgp : hw.tgp * KORTETS_ANDEL + RESTEN_AV_DATORN;
+  return {
+    gb,
+    ryms,
+    tps: ryms ? Math.round(tps * (tps < 20 ? 10 : 1)) / (tps < 20 ? 10 : 1) : null,
+    w: ryms ? Math.round(w / 5) * 5 : null,
+  };
+}
+
 // Mean price per quarter-hour window of `kvartar` quarters, cheapest first, from index `fran`.
 export function billigasteFonster(priser, kvartar, fran = 0) {
   let bast = null;

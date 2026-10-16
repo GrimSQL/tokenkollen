@@ -84,11 +84,24 @@ Ingen sajt räknar ut det med svenska elpriser. Det är luckan Tokenkollen fylle
   och andra granskningen sa **ship**.
 - Publicerad på GitHub Pages: https://grimsql.github.io/tokenkollen/
 
+### 2026-10-16 16:00 - fler grafikkort, ärligare tokens
+
+- **Fel 12:** första tokenredovisningen sa 24,4 miljoner. Det var nästan bara cache-läsningar,
+  samma samtal som skickas om vid varje steg. Utan dem blir det cirka 0,85 miljoner. Det hade
+  varit lätt att skicka in den stora siffran, så nu står hur den räknats.
+- Förvalen var sex handskrivna gissningar. Nu räknas de fram för 26 datorer och 8 modellstorlekar
+  ur tillverkarnas specifikationer: hastighet = minnesbandbredd × 0,65 ÷ modellens vikter i GB,
+  effekt = 70 % av kortets TGP + 100 W för resten av datorn. Kontroll: RTX 4090 med en 8B-modell
+  ger 137 tokens/s, och mätningar brukar landa kring 130. MoE-modeller räknas på de aktiva
+  vikterna men måste rymmas helt, och storlekar som inte ryms visas streckade.
+- Fråga som dök upp: går nätavgiften att hämta live? Nej. Runt 150 nätbolag har egna tariffer
+  och det finns inget öppet API, så den är ett ändringsbart standardvärde.
+
 ## Tokens
 
 Fylls i löpande. Claude Code visar förbrukningen per session.
 
 | Datum | Var | Tokens | Hur det räknats |
 |---|---|---|---|
-| 2026-10-16 | molnet | ≈ 24,4 miljoner | summerat ur Claude Codes sessionslogg (`usage` per svar, huvudsession och två granskningsagenter): 23,7 M cache-läsningar, 0,6 M cache-skrivningar, 0,1 M output, några hundra okachade input. Cache-läsningarna är samtalet som skickas om vid varje steg. |
+| 2026-10-16 | molnet | ≈ 0,85 miljoner | summerat ur Claude Codes sessionslogg (`usage` per svar, huvudsession och granskningsagenter): 0,7 M nyinlästa tokens (cache-skrivningar och input) och 0,14 M output. Cache-läsningarna, ungefär 40 M, är inte medräknade: de är samma samtal som skickas om vid varje steg och står för 98 % av råsumman. |
 | 2026-10-16 | lokalt | 0 | ingen lokal modell användes |

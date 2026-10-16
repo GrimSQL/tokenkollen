@@ -1,5 +1,5 @@
-import { MOLN, HARDVARA, EL, VALUTA_RESERV, OMRADEN, OMRADE_NAMN, KONTROLLERAT } from './data.js';
-import { orePerKwh, kwhPerMiljon, hardvaraPerMiljon, billigasteFonster, lasStatistik, tal } from './calc.js';
+import { MOLN, HARDVARA, MODELLER, EL, VALUTA_RESERV, OMRADEN, OMRADE_NAMN, KONTROLLERAT } from './data.js';
+import { orePerKwh, kwhPerMiljon, hardvaraPerMiljon, billigasteFonster, lasStatistik, tal, uppskatta, VERKNINGSGRAD, KORTETS_ANDEL, RESTEN_AV_DATORN, GB_PER_MILJARD } from './calc.js';
 
 const $ = (id) => document.getElementById(id);
 const SV = 'sv-SE';
@@ -42,7 +42,7 @@ function lasHash() {
   const p = new URLSearchParams(location.hash.slice(1));
   if (OMRADEN.includes(p.get('o'))) state.omrade = p.get('o');
   if (HARDVARA.some((h) => h.id === p.get('h'))) state.hw = p.get('h');
-  if (['8b', '32b'].includes(p.get('s'))) state.storlek = p.get('s');
+  if (MODELLER.some((m) => m.id === p.get('s'))) state.storlek = p.get('s');
   if (['nu', 'snitt', 'billig'].includes(p.get('k'))) state.kor = p.get('k');
   if (p.get('a') === '0') state.allt = false;
   const w = tal(p.get('w') ?? ''), t = tal(p.get('t') ?? '');
@@ -61,7 +61,8 @@ function skrivHash() {
 
 // ---------- Hardware ----------
 const hwNu = () => HARDVARA.find((h) => h.id === state.hw);
-const forval = () => ({ w: hwNu().w[state.storlek], tps: hwNu().tps[state.storlek] });
+const modellNu = () => MODELLER.find((m) => m.id === state.storlek);
+const forval = () => uppskatta(hwNu(), modellNu());
 const effWatt = () => state.watt ?? forval().w;
 const effTps = () => state.tps ?? forval().tps;
 
@@ -191,7 +192,9 @@ function ritaSvar(r) {
   const status = $('svar-status');
   if (r.kwh == null) status.textContent = hwNu().okand
     ? 'Ingen har publicerat mätvärden för den här datorn än. Fyll i effekt och hastighet.'
-    : 'Fyll i effekt och hastighet för att få en avläsning.';
+    : forval().ryms === false
+      ? `${modellNu().namn}-modellen ryms inte i minnet på ${hwNu().namn}. Välj en mindre modell, eller fyll i egna värden om du kör den med avlastning till RAM.`
+      : 'Fyll i effekt och hastighet för att få en avläsning.';
   else if (r.post?.laddar) status.textContent = 'Hämtar dagens elpris ...';
   else if (r.post?.fel && state.egenSpot == null) status.textContent = 'Elpriset gick inte att hämta från elprisetjustnu.se. Skriv in ett eget spotpris under Ändra avgifterna.';
   else status.textContent = '';
@@ -302,7 +305,14 @@ function ritaMetod(r) {
   const ol = $('rakning');
   const rad = (rubrik, formel) => `<li>${rubrik}<span class="formel">${formel}</span></li>`;
   const w = r.w ?? '?', t = r.t ?? '?';
-  let h = rad('Energi per miljon tokens: effekt delat med hastighet, omräknat från joule till kWh.',
+  let h = '';
+  const hw = hwNu(), m = modellNu(), f = forval();
+  if (hw.bw && f.ryms && (state.watt == null || state.tps == null)) {
+    h += rad(`Förvalet för ${hw.namn} och en ${m.namn}-modell${m.not ? ` (${m.not})` : ''}. Att generera text begränsas av minnet: varje token läser alla aktiva vikter en gång.`,
+      `${fmt(hw.bw)} GB/s × ${fmt(VERKNINGSGRAD, 2)} ÷ (${fmt(m.aktiva, m.aktiva % 1 ? 1 : 0)} miljarder × ${fmt(GB_PER_MILJARD, 1)} GB) = <b>${fmt(f.tps, f.tps % 1 ? 1 : 0)} tokens/s</b>, ` +
+      (hw.system ? `<b>${fmt(f.w)} W</b> för hela datorn` : `${fmt(hw.tgp)} W × ${fmt(KORTETS_ANDEL, 1)} + ${fmt(RESTEN_AV_DATORN)} W resten av datorn = <b>${fmt(f.w)} W</b>`));
+  }
+  h += rad('Energi per miljon tokens: effekt delat med hastighet, omräknat från joule till kWh.',
     `${fmt(w)} W ÷ (${t === '?' ? '?' : fmt(t, t % 1 ? 1 : 0)} tokens/s × 3,6) = <b>${r.kwh != null ? fmt(r.kwh, 2) : '?'} kWh</b>`);
   if (r.spot) {
     const sp = fmt(r.spot.ore, 1);
@@ -351,8 +361,20 @@ function ritaKallor() {
     `<li>Växelkurs: <a href="https://frankfurter.dev">Frankfurter</a>, ECB:s referenskurser.</li>`,
     ...unika.map(([url, bolag]) => `<li>Molnpriser från ${bolag}: <a href="${url}">${new URL(url).host}</a>, kontrollerat ${KONTROLLERAT}.</li>`),
     ...MOLN.filter((m) => m.not).map((m) => `<li>${m.namn}: ${m.not}</li>`),
-    `<li>Förvalen för hårdvaran är grova uppskattningar av hela datorns effekt och hastighet för en Q4-kvantiserad modell, inte egna mätningar. Dina egna värden går alltid före.</li>`,
+    `<li>Förvalen för hårdvaran är uppskattningar ur tillverkarnas specifikationer (minnesbandbredd, minne och TGP), inte mätningar. Hastigheten räknas för en Q4-kvantiserad modell med cirka 0,6 GB per miljard parametrar och 65 % av minnets toppbandbredd. Verkliga datorer hamnar oftast inom ±25 %. Dina egna värden går alltid före.</li>`,
+    `<li>Mac-datorerna kan använda ungefär tre fjärdedelar av det delade minnet till modellen, och det är den mängden som räknas.</li>`,
   ].join('');
+}
+
+// Model sizes as tick boxes; the ones that do not fit the chosen hardware are marked, not hidden.
+function ritaStorlekar() {
+  const h = hwNu();
+  $('storlekar').innerHTML = MODELLER.map((m) => {
+    const e = uppskatta(h, m);
+    const ryms = e.ryms !== false;
+    return `<label class="kryss${ryms ? '' : ' ryms-inte'}"><input type="radio" name="storlek" value="${m.id}"${m.id === state.storlek ? ' checked' : ''}>` +
+      `<span>${m.namn}${m.not ? ` <small>${m.not}</small>` : ''}${ryms ? '' : ' <small>ryms inte</small>'}</span></label>`;
+  }).join('');
 }
 
 function ritaHardvaraNot() {
@@ -360,8 +382,8 @@ function ritaHardvaraNot() {
   const not = $('hardvara-not');
   if (h.okand) not.textContent = 'Inga mätvärden publicerade än. Vinner du den, mät och fyll i.';
   else if (h.egen) not.textContent = 'Fyll i dina egna värden.';
-  else if (f.w == null) not.textContent = 'Modellen får inte plats i minnet på den här datorn.';
-  else not.textContent = `Förval: ${fmt(f.w)} W och ${fmt(f.tps, f.tps % 1 ? 1 : 0)} tokens/s, grovt uppskattat.`;
+  else if (!f.ryms) not.textContent = `Modellen behöver cirka ${fmt(f.gb + 1.5)} GB och ryms inte i ${fmt(h.gb)} GB. Välj en mindre modell eller fyll i egna värden.`;
+  else not.textContent = `Förval: ${fmt(f.w)} W och ${fmt(f.tps, f.tps % 1 ? 1 : 0)} tokens/s, uppskattat ur ${fmt(h.bw)} GB/s minnesbandbredd och ${fmt(h.tgp)} W${h.system ? ' för hela datorn' : ' TGP'}. Mät gärna själv.`;
   $('watt').placeholder = f.w != null ? fmt(f.w) : '';
   $('tps').placeholder = f.tps != null ? fmt(f.tps, f.tps % 1 ? 1 : 0) : '';
 }
@@ -382,8 +404,11 @@ function rita() {
 function bygg() {
   const om = $('omraden');
   om.innerHTML = OMRADEN.map((o) => `<label class="kryss"><input type="radio" name="omrade" value="${o}"${o === state.omrade ? ' checked' : ''}><span>${o} <small>${OMRADE_NAMN[o]}</small></span></label>`).join('');
-  $('hardvara').innerHTML = HARDVARA.map((h) => `<option value="${h.id}"${h.id === state.hw ? ' selected' : ''}>${h.namn}</option>`).join('');
-  document.querySelector(`input[name="storlek"][value="${state.storlek}"]`).checked = true;
+  const grupper = [...new Set(HARDVARA.map((h) => h.grupp))];
+  $('hardvara').innerHTML = grupper.map((g) => `<optgroup label="${g}">` +
+    HARDVARA.filter((h) => h.grupp === g).map((h) => `<option value="${h.id}"${h.id === state.hw ? ' selected' : ''}>${h.namn}</option>`).join('') +
+    '</optgroup>').join('');
+  ritaStorlekar();
   $('kor').value = state.kor;
   $('allt').checked = state.allt;
   $('paslag').value = fmt(state.paslag, 1);
@@ -400,7 +425,7 @@ function koppla() {
   form.addEventListener('change', async (e) => {
     const t = e.target;
     if (t.name === 'omrade') { state.omrade = t.value; rita(); await hamtaPriser(state.omrade); }
-    if (t.id === 'hardvara') { state.hw = t.value; state.watt = state.tps = null; $('watt').value = $('tps').value = ''; state.kalla = 'uppskattat'; }
+    if (t.id === 'hardvara') { state.hw = t.value; state.watt = state.tps = null; $('watt').value = $('tps').value = ''; state.kalla = 'uppskattat'; ritaStorlekar(); }
     if (t.name === 'storlek') { state.storlek = t.value; if (state.kalla === 'uppskattat') { state.watt = state.tps = null; } }
     if (t.id === 'kor') state.kor = t.value;
     if (t.id === 'allt') state.allt = t.checked;
