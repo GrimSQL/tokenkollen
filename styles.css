@@ -234,7 +234,7 @@ input:not([type]), input[inputmode], select, textarea {
   font: inherit;
   color: var(--black);
   background: var(--kort-falt);
-  border: 1.5px solid var(--ror);
+  border: 1.5px solid var(--ror-text);
   border-radius: 2px;
   padding: 0.5rem 0.65rem;
   caret-color: var(--black);
@@ -288,7 +288,7 @@ input[readonly], textarea[readonly] { background: transparent; }
   gap: 0.5rem;
   min-height: 2.6rem;
   padding: 0.35rem 0.8rem 0.35rem 0.55rem;
-  border: 1.5px solid var(--ror);
+  border: 1.5px solid var(--ror-text);
   border-radius: 2px;
   background: var(--kort-falt);
   font-weight: 650;
@@ -299,7 +299,7 @@ input[readonly], textarea[readonly] { background: transparent; }
   flex: none;
   width: 1.05rem;
   height: 1.05rem;
-  border: 1.5px solid var(--ror);
+  border: 1.5px solid var(--ror-text);
   background: var(--kort-falt);
 }
 .kryss input:checked + span::before {
@@ -461,7 +461,7 @@ input[readonly], textarea[readonly] { background: transparent; }
 .matare::before { content: ""; position: absolute; left: 25%; top: -0.15rem; bottom: -0.15rem; width: 2px; background: var(--black); }
 .matare i { position: absolute; top: 0.2rem; height: 0.7rem; border-radius: 1px; }
 .matare i.dyrare { left: 25%; background: var(--ramp-6); }
-.matare i.billigare { right: 75%; background: var(--ror); }
+.matare i.billigare { right: 75%; background: var(--ror-text); }
 .matare-text { font-size: 0.8rem; font-weight: 600; white-space: nowrap; }
 .matare-text.billigare { color: var(--ror-text); }
 

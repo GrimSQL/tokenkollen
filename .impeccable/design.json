@@ -1,0 +1,738 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-16T16:00:00+02:00",
+  "title": "Design System: Tokenkollen",
+  "extensions": {
+    "colorMeta": {
+      "kuvert": {
+        "role": "primary",
+        "displayName": "Utility Envelope Blue",
+        "canonical": "oklch(0.42 0.135 258)",
+        "tonalRamp": [
+          "oklch(0.15 0.135 258)",
+          "oklch(0.26 0.135 258)",
+          "oklch(0.37 0.135 258)",
+          "oklch(0.48 0.135 258)",
+          "oklch(0.60 0.135 258)",
+          "oklch(0.72 0.135 258)",
+          "oklch(0.84 0.135 258)",
+          "oklch(0.95 0.135 258)"
+        ],
+        "scheme": "light"
+      },
+      "kuvert-djup": {
+        "role": "primary",
+        "displayName": "Envelope Lining",
+        "canonical": "oklch(0.34 0.12 260)",
+        "tonalRamp": [
+          "oklch(0.15 0.12 260)",
+          "oklch(0.26 0.12 260)",
+          "oklch(0.37 0.12 260)",
+          "oklch(0.48 0.12 260)",
+          "oklch(0.60 0.12 260)",
+          "oklch(0.72 0.12 260)",
+          "oklch(0.84 0.12 260)",
+          "oklch(0.95 0.12 260)"
+        ],
+        "scheme": "light"
+      },
+      "kuvert-text": {
+        "role": "neutral",
+        "displayName": "Envelope Print",
+        "canonical": "oklch(0.97 0.012 250)",
+        "tonalRamp": [
+          "oklch(0.15 0.012 250)",
+          "oklch(0.26 0.012 250)",
+          "oklch(0.37 0.012 250)",
+          "oklch(0.48 0.012 250)",
+          "oklch(0.60 0.012 250)",
+          "oklch(0.72 0.012 250)",
+          "oklch(0.84 0.012 250)",
+          "oklch(0.95 0.012 250)"
+        ],
+        "scheme": "light"
+      },
+      "kuvert-text-2": {
+        "role": "neutral",
+        "displayName": "Envelope Print, secondary",
+        "canonical": "oklch(0.86 0.04 252)",
+        "tonalRamp": [
+          "oklch(0.15 0.04 252)",
+          "oklch(0.26 0.04 252)",
+          "oklch(0.37 0.04 252)",
+          "oklch(0.48 0.04 252)",
+          "oklch(0.60 0.04 252)",
+          "oklch(0.72 0.04 252)",
+          "oklch(0.84 0.04 252)",
+          "oklch(0.95 0.04 252)"
+        ],
+        "scheme": "light"
+      },
+      "kort": {
+        "role": "neutral",
+        "displayName": "Card Stock",
+        "canonical": "oklch(0.935 0.03 48)",
+        "tonalRamp": [
+          "oklch(0.15 0.03 48)",
+          "oklch(0.26 0.03 48)",
+          "oklch(0.37 0.03 48)",
+          "oklch(0.48 0.03 48)",
+          "oklch(0.60 0.03 48)",
+          "oklch(0.72 0.03 48)",
+          "oklch(0.84 0.03 48)",
+          "oklch(0.95 0.03 48)"
+        ],
+        "scheme": "light"
+      },
+      "kort-falt": {
+        "role": "neutral",
+        "displayName": "Field Ground",
+        "canonical": "oklch(0.965 0.018 52)",
+        "tonalRamp": [
+          "oklch(0.15 0.018 52)",
+          "oklch(0.26 0.018 52)",
+          "oklch(0.37 0.018 52)",
+          "oklch(0.48 0.018 52)",
+          "oklch(0.60 0.018 52)",
+          "oklch(0.72 0.018 52)",
+          "oklch(0.84 0.018 52)",
+          "oklch(0.95 0.018 52)"
+        ],
+        "scheme": "light"
+      },
+      "ror": {
+        "role": "secondary",
+        "displayName": "Form Dropout Vermilion",
+        "canonical": "oklch(0.66 0.16 37)",
+        "tonalRamp": [
+          "oklch(0.15 0.16 37)",
+          "oklch(0.26 0.16 37)",
+          "oklch(0.37 0.16 37)",
+          "oklch(0.48 0.16 37)",
+          "oklch(0.60 0.16 37)",
+          "oklch(0.72 0.16 37)",
+          "oklch(0.84 0.16 37)",
+          "oklch(0.95 0.16 37)"
+        ],
+        "scheme": "light"
+      },
+      "ror-text": {
+        "role": "secondary",
+        "displayName": "Dropout Label Vermilion",
+        "canonical": "oklch(0.49 0.16 33)",
+        "tonalRamp": [
+          "oklch(0.15 0.16 33)",
+          "oklch(0.26 0.16 33)",
+          "oklch(0.37 0.16 33)",
+          "oklch(0.48 0.16 33)",
+          "oklch(0.60 0.16 33)",
+          "oklch(0.72 0.16 33)",
+          "oklch(0.84 0.16 33)",
+          "oklch(0.95 0.16 33)"
+        ],
+        "scheme": "light"
+      },
+      "black": {
+        "role": "neutral",
+        "displayName": "Blue-Black Ink",
+        "canonical": "oklch(0.25 0.055 262)",
+        "tonalRamp": [
+          "oklch(0.15 0.055 262)",
+          "oklch(0.26 0.055 262)",
+          "oklch(0.37 0.055 262)",
+          "oklch(0.48 0.055 262)",
+          "oklch(0.60 0.055 262)",
+          "oklch(0.72 0.055 262)",
+          "oklch(0.84 0.055 262)",
+          "oklch(0.95 0.055 262)"
+        ],
+        "scheme": "light"
+      },
+      "black-2": {
+        "role": "neutral",
+        "displayName": "Faded Ink",
+        "canonical": "oklch(0.42 0.05 262)",
+        "tonalRamp": [
+          "oklch(0.15 0.05 262)",
+          "oklch(0.26 0.05 262)",
+          "oklch(0.37 0.05 262)",
+          "oklch(0.48 0.05 262)",
+          "oklch(0.60 0.05 262)",
+          "oklch(0.72 0.05 262)",
+          "oklch(0.84 0.05 262)",
+          "oklch(0.95 0.05 262)"
+        ],
+        "scheme": "light"
+      },
+      "signal": {
+        "role": "tertiary",
+        "displayName": "Signal Violet",
+        "canonical": "oklch(0.5 0.22 305)",
+        "tonalRamp": [
+          "oklch(0.15 0.22 305)",
+          "oklch(0.26 0.22 305)",
+          "oklch(0.37 0.22 305)",
+          "oklch(0.48 0.22 305)",
+          "oklch(0.60 0.22 305)",
+          "oklch(0.72 0.22 305)",
+          "oklch(0.84 0.22 305)",
+          "oklch(0.95 0.22 305)"
+        ],
+        "scheme": "light"
+      },
+      "signal-yta": {
+        "role": "tertiary",
+        "displayName": "Signal Violet wash",
+        "canonical": "oklch(0.5 0.22 305 / 0.14)",
+        "tonalRamp": [
+          "oklch(0.15 0.22 305)",
+          "oklch(0.26 0.22 305)",
+          "oklch(0.37 0.22 305)",
+          "oklch(0.48 0.22 305)",
+          "oklch(0.60 0.22 305)",
+          "oklch(0.72 0.22 305)",
+          "oklch(0.84 0.22 305)",
+          "oklch(0.95 0.22 305)"
+        ],
+        "scheme": "light"
+      },
+      "ramp-1": {
+        "role": "tertiary",
+        "displayName": "Price Ramp step 1",
+        "tonalRamp": [
+          "oklch(0.31 0.09 262)",
+          "oklch(0.41 0.1 261)",
+          "oklch(0.51 0.1 260)",
+          "oklch(0.61 0.09 258)",
+          "oklch(0.71 0.075 256)",
+          "oklch(0.8 0.055 254)",
+          "oklch(0.88 0.035 252)",
+          "oklch(0.95 0.02 250)"
+        ],
+        "scheme": "both"
+      },
+      "ramp-2": {
+        "role": "tertiary",
+        "displayName": "Price Ramp step 2",
+        "tonalRamp": [
+          "oklch(0.31 0.09 262)",
+          "oklch(0.41 0.1 261)",
+          "oklch(0.51 0.1 260)",
+          "oklch(0.61 0.09 258)",
+          "oklch(0.71 0.075 256)",
+          "oklch(0.8 0.055 254)",
+          "oklch(0.88 0.035 252)",
+          "oklch(0.95 0.02 250)"
+        ],
+        "scheme": "both"
+      },
+      "ramp-3": {
+        "role": "tertiary",
+        "displayName": "Price Ramp step 3",
+        "tonalRamp": [
+          "oklch(0.31 0.09 262)",
+          "oklch(0.41 0.1 261)",
+          "oklch(0.51 0.1 260)",
+          "oklch(0.61 0.09 258)",
+          "oklch(0.71 0.075 256)",
+          "oklch(0.8 0.055 254)",
+          "oklch(0.88 0.035 252)",
+          "oklch(0.95 0.02 250)"
+        ],
+        "scheme": "both"
+      },
+      "ramp-4": {
+        "role": "tertiary",
+        "displayName": "Price Ramp step 4",
+        "tonalRamp": [
+          "oklch(0.31 0.09 262)",
+          "oklch(0.41 0.1 261)",
+          "oklch(0.51 0.1 260)",
+          "oklch(0.61 0.09 258)",
+          "oklch(0.71 0.075 256)",
+          "oklch(0.8 0.055 254)",
+          "oklch(0.88 0.035 252)",
+          "oklch(0.95 0.02 250)"
+        ],
+        "scheme": "both"
+      },
+      "ramp-5": {
+        "role": "tertiary",
+        "displayName": "Price Ramp step 5",
+        "tonalRamp": [
+          "oklch(0.31 0.09 262)",
+          "oklch(0.41 0.1 261)",
+          "oklch(0.51 0.1 260)",
+          "oklch(0.61 0.09 258)",
+          "oklch(0.71 0.075 256)",
+          "oklch(0.8 0.055 254)",
+          "oklch(0.88 0.035 252)",
+          "oklch(0.95 0.02 250)"
+        ],
+        "scheme": "both"
+      },
+      "ramp-6": {
+        "role": "tertiary",
+        "displayName": "Price Ramp step 6",
+        "tonalRamp": [
+          "oklch(0.31 0.09 262)",
+          "oklch(0.41 0.1 261)",
+          "oklch(0.51 0.1 260)",
+          "oklch(0.61 0.09 258)",
+          "oklch(0.71 0.075 256)",
+          "oklch(0.8 0.055 254)",
+          "oklch(0.88 0.035 252)",
+          "oklch(0.95 0.02 250)"
+        ],
+        "scheme": "both"
+      },
+      "ramp-7": {
+        "role": "tertiary",
+        "displayName": "Price Ramp step 7",
+        "tonalRamp": [
+          "oklch(0.31 0.09 262)",
+          "oklch(0.41 0.1 261)",
+          "oklch(0.51 0.1 260)",
+          "oklch(0.61 0.09 258)",
+          "oklch(0.71 0.075 256)",
+          "oklch(0.8 0.055 254)",
+          "oklch(0.88 0.035 252)",
+          "oklch(0.95 0.02 250)"
+        ],
+        "scheme": "both"
+      },
+      "kuvert-dark": {
+        "role": "primary",
+        "displayName": "Utility Envelope Blue (dark scheme)",
+        "tonalRamp": [
+          "oklch(0.15 0.135 258)",
+          "oklch(0.26 0.135 258)",
+          "oklch(0.37 0.135 258)",
+          "oklch(0.48 0.135 258)",
+          "oklch(0.60 0.135 258)",
+          "oklch(0.72 0.135 258)",
+          "oklch(0.84 0.135 258)",
+          "oklch(0.95 0.135 258)"
+        ],
+        "scheme": "dark"
+      },
+      "kuvert-djup-dark": {
+        "role": "primary",
+        "displayName": "Envelope Lining (dark scheme)",
+        "tonalRamp": [
+          "oklch(0.15 0.12 260)",
+          "oklch(0.26 0.12 260)",
+          "oklch(0.37 0.12 260)",
+          "oklch(0.48 0.12 260)",
+          "oklch(0.60 0.12 260)",
+          "oklch(0.72 0.12 260)",
+          "oklch(0.84 0.12 260)",
+          "oklch(0.95 0.12 260)"
+        ],
+        "scheme": "dark"
+      },
+      "kuvert-text-dark": {
+        "role": "neutral",
+        "displayName": "Envelope Print (dark scheme)",
+        "tonalRamp": [
+          "oklch(0.15 0.012 250)",
+          "oklch(0.26 0.012 250)",
+          "oklch(0.37 0.012 250)",
+          "oklch(0.48 0.012 250)",
+          "oklch(0.60 0.012 250)",
+          "oklch(0.72 0.012 250)",
+          "oklch(0.84 0.012 250)",
+          "oklch(0.95 0.012 250)"
+        ],
+        "scheme": "dark"
+      },
+      "kuvert-text-2-dark": {
+        "role": "neutral",
+        "displayName": "Envelope Print, secondary (dark scheme)",
+        "tonalRamp": [
+          "oklch(0.15 0.04 252)",
+          "oklch(0.26 0.04 252)",
+          "oklch(0.37 0.04 252)",
+          "oklch(0.48 0.04 252)",
+          "oklch(0.60 0.04 252)",
+          "oklch(0.72 0.04 252)",
+          "oklch(0.84 0.04 252)",
+          "oklch(0.95 0.04 252)"
+        ],
+        "scheme": "dark"
+      },
+      "kort-dark": {
+        "role": "neutral",
+        "displayName": "Card Stock (dark scheme)",
+        "tonalRamp": [
+          "oklch(0.15 0.03 48)",
+          "oklch(0.26 0.03 48)",
+          "oklch(0.37 0.03 48)",
+          "oklch(0.48 0.03 48)",
+          "oklch(0.60 0.03 48)",
+          "oklch(0.72 0.03 48)",
+          "oklch(0.84 0.03 48)",
+          "oklch(0.95 0.03 48)"
+        ],
+        "scheme": "dark"
+      },
+      "kort-falt-dark": {
+        "role": "neutral",
+        "displayName": "Field Ground (dark scheme)",
+        "tonalRamp": [
+          "oklch(0.15 0.018 52)",
+          "oklch(0.26 0.018 52)",
+          "oklch(0.37 0.018 52)",
+          "oklch(0.48 0.018 52)",
+          "oklch(0.60 0.018 52)",
+          "oklch(0.72 0.018 52)",
+          "oklch(0.84 0.018 52)",
+          "oklch(0.95 0.018 52)"
+        ],
+        "scheme": "dark"
+      },
+      "ror-dark": {
+        "role": "secondary",
+        "displayName": "Form Dropout Vermilion (dark scheme)",
+        "tonalRamp": [
+          "oklch(0.15 0.16 37)",
+          "oklch(0.26 0.16 37)",
+          "oklch(0.37 0.16 37)",
+          "oklch(0.48 0.16 37)",
+          "oklch(0.60 0.16 37)",
+          "oklch(0.72 0.16 37)",
+          "oklch(0.84 0.16 37)",
+          "oklch(0.95 0.16 37)"
+        ],
+        "scheme": "dark"
+      },
+      "ror-text-dark": {
+        "role": "secondary",
+        "displayName": "Dropout Label Vermilion (dark scheme)",
+        "tonalRamp": [
+          "oklch(0.15 0.16 33)",
+          "oklch(0.26 0.16 33)",
+          "oklch(0.37 0.16 33)",
+          "oklch(0.48 0.16 33)",
+          "oklch(0.60 0.16 33)",
+          "oklch(0.72 0.16 33)",
+          "oklch(0.84 0.16 33)",
+          "oklch(0.95 0.16 33)"
+        ],
+        "scheme": "dark"
+      },
+      "black-dark": {
+        "role": "neutral",
+        "displayName": "Blue-Black Ink (dark scheme)",
+        "tonalRamp": [
+          "oklch(0.15 0.055 262)",
+          "oklch(0.26 0.055 262)",
+          "oklch(0.37 0.055 262)",
+          "oklch(0.48 0.055 262)",
+          "oklch(0.60 0.055 262)",
+          "oklch(0.72 0.055 262)",
+          "oklch(0.84 0.055 262)",
+          "oklch(0.95 0.055 262)"
+        ],
+        "scheme": "dark"
+      },
+      "black-2-dark": {
+        "role": "neutral",
+        "displayName": "Faded Ink (dark scheme)",
+        "tonalRamp": [
+          "oklch(0.15 0.05 262)",
+          "oklch(0.26 0.05 262)",
+          "oklch(0.37 0.05 262)",
+          "oklch(0.48 0.05 262)",
+          "oklch(0.60 0.05 262)",
+          "oklch(0.72 0.05 262)",
+          "oklch(0.84 0.05 262)",
+          "oklch(0.95 0.05 262)"
+        ],
+        "scheme": "dark"
+      },
+      "signal-dark": {
+        "role": "tertiary",
+        "displayName": "Signal Violet (dark scheme)",
+        "tonalRamp": [
+          "oklch(0.15 0.22 305)",
+          "oklch(0.26 0.22 305)",
+          "oklch(0.37 0.22 305)",
+          "oklch(0.48 0.22 305)",
+          "oklch(0.60 0.22 305)",
+          "oklch(0.72 0.22 305)",
+          "oklch(0.84 0.22 305)",
+          "oklch(0.95 0.22 305)"
+        ],
+        "scheme": "dark"
+      },
+      "signal-yta-dark": {
+        "role": "tertiary",
+        "displayName": "Signal Violet wash (dark scheme)",
+        "tonalRamp": [
+          "oklch(0.15 0.22 305)",
+          "oklch(0.26 0.22 305)",
+          "oklch(0.37 0.22 305)",
+          "oklch(0.48 0.22 305)",
+          "oklch(0.60 0.22 305)",
+          "oklch(0.72 0.22 305)",
+          "oklch(0.84 0.22 305)",
+          "oklch(0.95 0.22 305)"
+        ],
+        "scheme": "dark"
+      }
+    },
+    "typographyMeta": {
+      "wordmark": {
+        "displayName": "Wordmark",
+        "purpose": "The name on the envelope, once."
+      },
+      "reading": {
+        "displayName": "Reading",
+        "purpose": "Answer digits, one per vermilion cell."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Card titles."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Subheads inside a card."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text, max 68ch, tabular figures."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "Typed values in numeric fields; 1.5rem in comb fields."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Printed labels, legends, table headers, form numbers, in Dropout Label Vermilion, sentence case."
+      },
+      "stamp": {
+        "displayName": "Stamp",
+        "purpose": "The status stamp only; uppercase."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Pasted terminal output, BB-code, inline code."
+      }
+    },
+    "shadows": [
+      {
+        "name": "card-on-envelope",
+        "value": "0 1px 1px oklch(0 0 0 / 0.18), 0 14px 32px -12px oklch(0 0 0 / 0.4)",
+        "purpose": "Every card on the blue ground (light scheme)."
+      },
+      {
+        "name": "card-on-envelope-dark",
+        "value": "0 1px 1px oklch(0 0 0 / 0.35), 0 14px 32px -12px oklch(0 0 0 / 0.65)",
+        "purpose": "Every card, dark scheme."
+      },
+      {
+        "name": "ink-button",
+        "value": "0 1px 0 var(--ror), 0 6px 14px -8px oklch(0 0 0 / 0.35)",
+        "purpose": "Ink button at rest; hover 0 2px 0 var(--ror), 0 10px 18px -8px oklch(0 0 0 / 0.35); active 0 0 0 var(--ror)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ink-settle",
+        "value": "180ms cubic-bezier(0.16, 1, 0.3, 1), stagger 28ms per digit",
+        "purpose": "Reading digits re-print: opacity 0.15 to 1, 1px vertical travel."
+      },
+      {
+        "name": "stamp-press",
+        "value": "260ms cubic-bezier(0.2, 0.9, 0.25, 1)",
+        "purpose": "Status stamp on state change: scale 1.08 to 1, opacity 0.35 to 1, rotate -4deg held."
+      },
+      {
+        "name": "press",
+        "value": "140ms cubic-bezier(0.2, 0.8, 0.2, 1)",
+        "purpose": "Ink button lift and press."
+      },
+      {
+        "name": "disclosure",
+        "value": "160ms cubic-bezier(0.2, 0.8, 0.2, 1)",
+        "purpose": "Disclosure chevron rotation -45deg to 45deg."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "none",
+        "purpose": "prefers-reduced-motion removes all animation, transitions and smooth scroll."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "trio-stack",
+        "value": "460px",
+        "purpose": "max-width: fee trio collapses to one column"
+      },
+      {
+        "name": "ledger-compact",
+        "value": "560px",
+        "purpose": "max-width: ledger hides the input column"
+      },
+      {
+        "name": "gutter",
+        "value": "700px",
+        "purpose": "min-width: gutters 16px to 32px"
+      },
+      {
+        "name": "sheet",
+        "value": "1000px",
+        "purpose": "min-width: 12-column card sheet, 5/7 first row"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Ink Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The primary action on a card foot.",
+      "html": "<button class=\"ds-knapp\">Kopiera BB-koden</button>",
+      "css": ":root{--kuvert:oklch(0.42 0.135 258);--kuvert-text:oklch(0.97 0.012 250);--kort:oklch(0.935 0.03 48);--kort-falt:oklch(0.965 0.018 52);--ror:oklch(0.66 0.16 37);--ror-text:oklch(0.49 0.16 33);--black:oklch(0.25 0.055 262);--black-2:oklch(0.42 0.05 262);--signal:oklch(0.5 0.22 305);--signal-yta:oklch(0.5 0.22 305 / 0.14);--skugga:0 1px 1px oklch(0 0 0 / 0.18),0 14px 32px -12px oklch(0 0 0 / 0.4);}.ds-knapp{font-family:'Archivo',system-ui,sans-serif;font-variant-numeric:tabular-nums;display:inline-flex;align-items:center;justify-content:center;min-height:2.9rem;padding:0.55rem 1.2rem;border:0;border-radius:2px;background:var(--black);color:var(--kort);font-size:1rem;font-weight:700;font-stretch:110%;cursor:pointer;box-shadow:0 1px 0 var(--ror),0 6px 14px -8px oklch(0 0 0 / 0.35);transition:transform 140ms cubic-bezier(0.2,0.8,0.2,1),box-shadow 140ms;}.ds-knapp:hover{transform:translateY(-1px);box-shadow:0 2px 0 var(--ror),0 10px 18px -8px oklch(0 0 0 / 0.35);}.ds-knapp:active{transform:translateY(1px);box-shadow:0 0 0 var(--ror);}.ds-knapp:focus-visible{outline:2.5px solid var(--black);outline-offset:2px;}"
+    },
+    {
+      "name": "Ink Button, disabled",
+      "kind": "button",
+      "refersTo": "button-primary-disabled",
+      "description": "An action not yet available; reads as an empty printed box.",
+      "html": "<button class=\"ds-knapp-av\" disabled>Använd hastigheten</button>",
+      "css": ":root{--kuvert:oklch(0.42 0.135 258);--kuvert-text:oklch(0.97 0.012 250);--kort:oklch(0.935 0.03 48);--kort-falt:oklch(0.965 0.018 52);--ror:oklch(0.66 0.16 37);--ror-text:oklch(0.49 0.16 33);--black:oklch(0.25 0.055 262);--black-2:oklch(0.42 0.05 262);--signal:oklch(0.5 0.22 305);--signal-yta:oklch(0.5 0.22 305 / 0.14);--skugga:0 1px 1px oklch(0 0 0 / 0.18),0 14px 32px -12px oklch(0 0 0 / 0.4);}.ds-knapp-av{font-family:'Archivo',system-ui,sans-serif;font-variant-numeric:tabular-nums;min-height:2.9rem;padding:0.55rem 1.2rem;border:0;border-radius:2px;background:transparent;color:var(--black-2);font-size:1rem;font-weight:700;font-stretch:110%;box-shadow:inset 0 0 0 1.5px var(--ror);cursor:not-allowed;}"
+    },
+    {
+      "name": "Labelled Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Vermilion printed label over a field cut into the card.",
+      "html": "<div class=\"ds-falt\"><label for=\"ds-n\">Nätavgift <span>öre/kWh</span></label><input id=\"ds-n\" inputmode=\"decimal\" value=\"25,0\"></div>",
+      "css": ":root{--kuvert:oklch(0.42 0.135 258);--kuvert-text:oklch(0.97 0.012 250);--kort:oklch(0.935 0.03 48);--kort-falt:oklch(0.965 0.018 52);--ror:oklch(0.66 0.16 37);--ror-text:oklch(0.49 0.16 33);--black:oklch(0.25 0.055 262);--black-2:oklch(0.42 0.05 262);--signal:oklch(0.5 0.22 305);--signal-yta:oklch(0.5 0.22 305 / 0.14);--skugga:0 1px 1px oklch(0 0 0 / 0.18),0 14px 32px -12px oklch(0 0 0 / 0.4);}.ds-falt{font-family:'Archivo',system-ui,sans-serif;font-variant-numeric:tabular-nums;background:var(--kort);padding:1rem;}.ds-falt label{display:block;color:var(--ror-text);font-size:0.8rem;font-weight:600;font-stretch:108%;margin-bottom:0.35rem;}.ds-falt label span{font-weight:450;}.ds-falt input{width:100%;box-sizing:border-box;font:inherit;font-size:1.35rem;font-weight:650;font-stretch:105%;letter-spacing:0.02em;color:var(--black);background:var(--kort-falt);border:1.5px solid var(--ror);border-radius:2px;padding:0.5rem 0.65rem;min-height:2.75rem;caret-color:var(--black);}.ds-falt input:hover{border-color:var(--ror-text);}.ds-falt input:focus-visible{outline:2.5px solid var(--black);outline-offset:2px;}"
+    },
+    {
+      "name": "Comb Field",
+      "kind": "input",
+      "refersTo": "comb-field",
+      "description": "Numeric entry, one digit per printed cell, 1.7ch pitch.",
+      "html": "<div class=\"ds-kam-wrap\"><input class=\"ds-kam\" inputmode=\"decimal\" maxlength=\"4\" value=\"500\" aria-label=\"Effekt W\"></div>",
+      "css": ":root{--kuvert:oklch(0.42 0.135 258);--kuvert-text:oklch(0.97 0.012 250);--kort:oklch(0.935 0.03 48);--kort-falt:oklch(0.965 0.018 52);--ror:oklch(0.66 0.16 37);--ror-text:oklch(0.49 0.16 33);--black:oklch(0.25 0.055 262);--black-2:oklch(0.42 0.05 262);--signal:oklch(0.5 0.22 305);--signal-yta:oklch(0.5 0.22 305 / 0.14);--skugga:0 1px 1px oklch(0 0 0 / 0.18),0 14px 32px -12px oklch(0 0 0 / 0.4);}.ds-kam-wrap{background:var(--kort);padding:1rem;}.ds-kam{font-family:'Archivo',system-ui,sans-serif;font-variant-numeric:tabular-nums;--celler:4;width:calc(var(--celler) * 1.7ch + 1.5px);padding:0;min-height:2.75rem;text-indent:0.35ch;letter-spacing:0.7ch;font-size:1.5rem;font-weight:650;font-stretch:105%;color:var(--black);border:1.5px solid var(--ror);border-radius:2px;background-color:var(--kort-falt);background-image:repeating-linear-gradient(to right,transparent 0 calc(1.7ch - 1.5px),var(--ror) calc(1.7ch - 1.5px) 1.7ch);background-clip:padding-box;}.ds-kam:hover{border-color:var(--ror-text);}.ds-kam:focus-visible{outline:2.5px solid var(--black);outline-offset:2px;}"
+    },
+    {
+      "name": "Tick Box",
+      "kind": "chip",
+      "refersTo": "tick-box",
+      "description": "Printed square filled with an ink cross when chosen; serves radios and checkboxes.",
+      "html": "<div class=\"ds-kryss-rad\"><label class=\"ds-kryss\"><input type=\"radio\" name=\"ds-o\"><span>SE1 <small>Luleå</small></span></label><label class=\"ds-kryss\"><input type=\"radio\" name=\"ds-o\" checked><span>SE3 <small>Stockholm</small></span></label></div>",
+      "css": ":root{--kuvert:oklch(0.42 0.135 258);--kuvert-text:oklch(0.97 0.012 250);--kort:oklch(0.935 0.03 48);--kort-falt:oklch(0.965 0.018 52);--ror:oklch(0.66 0.16 37);--ror-text:oklch(0.49 0.16 33);--black:oklch(0.25 0.055 262);--black-2:oklch(0.42 0.05 262);--signal:oklch(0.5 0.22 305);--signal-yta:oklch(0.5 0.22 305 / 0.14);--skugga:0 1px 1px oklch(0 0 0 / 0.18),0 14px 32px -12px oklch(0 0 0 / 0.4);}.ds-kryss-rad{font-family:'Archivo',system-ui,sans-serif;font-variant-numeric:tabular-nums;display:flex;gap:0.45rem;background:var(--kort);padding:1rem;}.ds-kryss{position:relative;display:inline-flex;cursor:pointer;}.ds-kryss input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer;}.ds-kryss span{display:inline-flex;align-items:center;gap:0.5rem;min-height:2.6rem;padding:0.35rem 0.8rem 0.35rem 0.55rem;border:1.5px solid var(--ror);border-radius:2px;background:var(--kort-falt);color:var(--black);font-weight:650;}.ds-kryss span::before{content:\"\";flex:none;width:1.05rem;height:1.05rem;border:1.5px solid var(--ror);background:var(--kort-falt);}.ds-kryss input:checked + span::before{background:linear-gradient(45deg,transparent 43%,var(--black) 43%,var(--black) 57%,transparent 57%),linear-gradient(-45deg,transparent 43%,var(--black) 43%,var(--black) 57%,transparent 57%),var(--kort-falt);}.ds-kryss input:checked + span{border-color:var(--ror-text);}.ds-kryss input:focus-visible + span{outline:2.5px solid var(--black);outline-offset:2px;}.ds-kryss small{font-weight:450;color:var(--black-2);font-size:0.78rem;}"
+    },
+    {
+      "name": "Card on Envelope",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Salmon card with perforated top edge, vermilion header rule and form number.",
+      "html": "<div class=\"ds-env\"><section class=\"ds-kort\"><div class=\"ds-huvud\"><h2>Din dator</h2><p>Blankett TK-1</p></div><p class=\"ds-txt\">Dina egna mätvärden ersätter förvalen.</p></section></div>",
+      "css": ":root{--kuvert:oklch(0.42 0.135 258);--kuvert-text:oklch(0.97 0.012 250);--kort:oklch(0.935 0.03 48);--kort-falt:oklch(0.965 0.018 52);--ror:oklch(0.66 0.16 37);--ror-text:oklch(0.49 0.16 33);--black:oklch(0.25 0.055 262);--black-2:oklch(0.42 0.05 262);--signal:oklch(0.5 0.22 305);--signal-yta:oklch(0.5 0.22 305 / 0.14);--skugga:0 1px 1px oklch(0 0 0 / 0.18),0 14px 32px -12px oklch(0 0 0 / 0.4);}.ds-env{background:var(--kuvert);padding:24px;}.ds-kort{font-family:'Archivo',system-ui,sans-serif;font-variant-numeric:tabular-nums;position:relative;background:var(--kort);color:var(--black);border-radius:3px;box-shadow:var(--skugga);padding:calc(1.5rem + 6px) 1.5rem 1.5rem;}.ds-kort::before{content:\"\";position:absolute;inset:0 0 auto 0;height:12px;background:radial-gradient(circle at 50% 0,var(--kuvert) 3px,transparent 3.5px) 0 0 / 14px 12px repeat-x;border-radius:3px 3px 0 0;}.ds-huvud{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;border-bottom:2px solid var(--ror);padding-bottom:0.65rem;margin-bottom:1.2rem;}.ds-huvud h2{margin:0;font-size:1.6rem;font-weight:750;font-stretch:118%;letter-spacing:-0.01em;line-height:1.12;}.ds-huvud p{margin:0;color:var(--ror-text);font-size:0.78rem;font-weight:600;font-stretch:112%;}.ds-txt{margin:0;line-height:1.55;}"
+    },
+    {
+      "name": "Status Stamp",
+      "kind": "custom",
+      "refersTo": "stamp",
+      "description": "Rotated bordered stamp; colour follows state; presses once on change (hover replays it here).",
+      "html": "<div class=\"ds-st-wrap\"><p class=\"ds-stampel\">Uppskattat</p><p class=\"ds-stampel ds-matt\">Mätt 2026-10-16</p></div>",
+      "css": ":root{--kuvert:oklch(0.42 0.135 258);--kuvert-text:oklch(0.97 0.012 250);--kort:oklch(0.935 0.03 48);--kort-falt:oklch(0.965 0.018 52);--ror:oklch(0.66 0.16 37);--ror-text:oklch(0.49 0.16 33);--black:oklch(0.25 0.055 262);--black-2:oklch(0.42 0.05 262);--signal:oklch(0.5 0.22 305);--signal-yta:oklch(0.5 0.22 305 / 0.14);--skugga:0 1px 1px oklch(0 0 0 / 0.18),0 14px 32px -12px oklch(0 0 0 / 0.4);}.ds-st-wrap{display:flex;gap:1.5rem;background:var(--kort);padding:1.5rem;}.ds-stampel{margin:0;font-family:'Archivo',system-ui,sans-serif;font-stretch:125%;font-weight:850;font-size:0.86rem;letter-spacing:0.06em;text-transform:uppercase;padding:0.18rem 0.55rem 0.12rem;border:2.5px solid currentColor;border-radius:3px;transform:rotate(-4deg);color:var(--ror-text);white-space:nowrap;}.ds-matt{color:var(--black);}.ds-stampel:hover{animation:ds-stampla 260ms cubic-bezier(0.2,0.9,0.25,1);}@keyframes ds-stampla{0%{transform:rotate(-4deg) scale(1.08);opacity:0.35;}100%{transform:rotate(-4deg) scale(1);opacity:1;}}"
+    },
+    {
+      "name": "Reading Digits",
+      "kind": "custom",
+      "refersTo": "reading-digit",
+      "description": "The answer in boxed digits with a ruled decimal comma.",
+      "html": "<p class=\"ds-svar\"><span class=\"ds-ruta ds-sist\">2</span><span class=\"ds-komma\">,</span><span class=\"ds-ruta\">0</span><span class=\"ds-ruta ds-sist\">2</span><span class=\"ds-enhet\">kr</span></p>",
+      "css": ":root{--kuvert:oklch(0.42 0.135 258);--kuvert-text:oklch(0.97 0.012 250);--kort:oklch(0.935 0.03 48);--kort-falt:oklch(0.965 0.018 52);--ror:oklch(0.66 0.16 37);--ror-text:oklch(0.49 0.16 33);--black:oklch(0.25 0.055 262);--black-2:oklch(0.42 0.05 262);--signal:oklch(0.5 0.22 305);--signal-yta:oklch(0.5 0.22 305 / 0.14);--skugga:0 1px 1px oklch(0 0 0 / 0.18),0 14px 32px -12px oklch(0 0 0 / 0.4);}.ds-svar{font-family:'Archivo',system-ui,sans-serif;font-variant-numeric:tabular-nums;display:flex;align-items:flex-end;margin:0;background:var(--kort);padding:1.5rem;color:var(--black);}.ds-ruta{display:inline-grid;place-items:center;width:0.86em;height:1.2em;border:2px solid var(--ror);border-right-width:0;background:var(--kort-falt);font-size:4rem;font-weight:760;line-height:1;}.ds-sist{border-right-width:2px;}.ds-komma{font-size:4rem;font-weight:760;line-height:1;width:0.3em;text-align:center;padding-bottom:0.1em;border-bottom:2px solid var(--ror);}.ds-komma + .ds-ruta{border-left-width:2px;}.ds-enhet{font-size:1.8rem;font-weight:700;font-stretch:112%;padding:0 0 0.25em 0.6rem;}"
+    },
+    {
+      "name": "Cheapest Window Mark",
+      "kind": "chip",
+      "refersTo": "cheapest-mark",
+      "description": "The only use of Signal Violet outside the chart window.",
+      "html": "<p class=\"ds-dygn\">Billigast att köra 3 h: <mark>i morgon 21:00-00:00</mark>, spotpris 23 öre/kWh.</p>",
+      "css": ":root{--kuvert:oklch(0.42 0.135 258);--kuvert-text:oklch(0.97 0.012 250);--kort:oklch(0.935 0.03 48);--kort-falt:oklch(0.965 0.018 52);--ror:oklch(0.66 0.16 37);--ror-text:oklch(0.49 0.16 33);--black:oklch(0.25 0.055 262);--black-2:oklch(0.42 0.05 262);--signal:oklch(0.5 0.22 305);--signal-yta:oklch(0.5 0.22 305 / 0.14);--skugga:0 1px 1px oklch(0 0 0 / 0.18),0 14px 32px -12px oklch(0 0 0 / 0.4);}.ds-dygn{font-family:'Archivo',system-ui,sans-serif;font-variant-numeric:tabular-nums;margin:0;background:var(--kort);color:var(--black);padding:1.5rem;font-size:1.08rem;line-height:1.55;}.ds-dygn mark{background:var(--signal-yta);color:var(--signal);font-weight:700;padding:0 0.2em;border-radius:2px;}"
+    },
+    {
+      "name": "Envelope Nav",
+      "kind": "nav",
+      "description": "Wrapping row of links on the envelope, underlined in vermilion.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\">Dygnets elpris</a><a href=\"#\">Klistra in från Ollama</a><a href=\"#\">Så räknar vi</a></nav>",
+      "css": ":root{--kuvert:oklch(0.42 0.135 258);--kuvert-text:oklch(0.97 0.012 250);--kort:oklch(0.935 0.03 48);--kort-falt:oklch(0.965 0.018 52);--ror:oklch(0.66 0.16 37);--ror-text:oklch(0.49 0.16 33);--black:oklch(0.25 0.055 262);--black-2:oklch(0.42 0.05 262);--signal:oklch(0.5 0.22 305);--signal-yta:oklch(0.5 0.22 305 / 0.14);--skugga:0 1px 1px oklch(0 0 0 / 0.18),0 14px 32px -12px oklch(0 0 0 / 0.4);}.ds-nav{font-family:'Archivo',system-ui,sans-serif;display:flex;flex-wrap:wrap;gap:0.35rem 1.4rem;background:var(--kuvert);padding:1.5rem;font-weight:600;font-size:0.95rem;}.ds-nav a{color:var(--kuvert-text);text-decoration-color:var(--ror);text-decoration-thickness:1.5px;text-underline-offset:0.18em;}.ds-nav a:hover{text-decoration-thickness:2.5px;}.ds-nav a:focus-visible{outline:2.5px solid var(--kuvert-text);outline-offset:2px;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Meter-Reading Card",
+    "overview": "The whole page is the elbolag's avläsningskort, mailed out in its envelope. The ground is a committed utility blue, the envelope. Every working surface is a pale salmon card of form stock with a perforated top edge where the envelope shows through the punched holes. The card is printed in one dropout ink, vermilion: every rule, box, label, form number and list marker. Everything the reader types or the computation writes goes on in deep blue-black ink, in Archivo with tabular figures. The split between printed and written is the whole visual grammar.\n\nDensity is that of a utility form: compact labels, boxed fields, ledger rows with hairline vermilion rules, figures that line up. The answer is the one loud element: the reading in giant boxed digits, one figure per printed cell, with a rotated status stamp beside it. States stamp onto the card rather than replacing what came before. A superseded estimate stays visible with a vermilion strike. The world rejects the category default for this kind of tool, the dark dashboard with stat tiles and sliders.\n\nColour beyond the form is rationed. Price levels snap to a fixed seven-step blue ramp, with no free gradients. One reserved signal violet marks only the cheapest running window and the sentence that names it. Dark mode is the same card with the lamp off: the hues stay put and only the light drops.",
+    "keyCharacteristics": [
+      "Utility-blue envelope ground, salmon card stock, vermilion dropout print, blue-black ink.",
+      "Comb digit fields and boxed reading digits: one figure per printed cell.",
+      "Tick boxes filled with an ink cross, never a checkmark or a toggle.",
+      "A rotated, bordered, uppercase status stamp. No badges or pills.",
+      "A seven-step price ramp and one reserved violet.",
+      "Archivo variable, with its width axis carrying hierarchy. Tabular figures everywhere."
+    ],
+    "rules": [
+      {
+        "name": "The Dropout Ink Rule",
+        "body": "Whatever the form prints is vermilion. Whatever the reader or the calculation writes is blue-black. Labels are never ink and values are never vermilion.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Violet Rule",
+        "body": "Signal violet marks only the cheapest running window and the text that names it. If anything else on the page turns violet, it has stolen the signal.",
+        "section": "colors"
+      },
+      {
+        "name": "The Seven Steps Rule",
+        "body": "A price level is one of seven ramp steps. Charts get no continuous gradients and no in-between tints. Hours that have already passed drop to vermilion at 30%.",
+        "section": "colors"
+      },
+      {
+        "name": "The Lamp-Off Rule",
+        "body": "Dark mode keeps every hue and drops the lightness: the envelope stays blue, the card stays salmon and the print stays vermilion (see the `-dark` tokens). Cards keep `color-scheme: light` because they are still paper.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tabular Figures Rule",
+        "body": "Every number is set with `tabular-nums`, chart axes included. Columns of kronor have to line up the way they would on a printed ledger.",
+        "section": "typography"
+      },
+      {
+        "name": "The Uppercase Belongs to the Stamp Rule",
+        "body": "Only the stamp is set in capitals. Labels, form numbers and headings stay in sentence case.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Sheet Rule",
+        "body": "Only cards cast shadows, plus the ink button's small lift. Fields, tick boxes, stamps and table rows are printed flat on the card.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** print every label, rule, border and form number in vermilion (`ror-text` for text, `ror` for lines), and write every value in blue-black ink.",
+      "**Do** put numeric entry in comb cells and the headline result in boxed reading digits, one figure per cell.",
+      "**Do** show state with the rotated stamp, and keep the superseded value visible with a vermilion strike.",
+      "**Do** snap any price or level colour to `ramp-1` through `ramp-7`.",
+      "**Do** keep tabular figures on every number, including chart axes.",
+      "**Do** keep the hues fixed in dark mode and lower only the lightness. Cards stay `color-scheme: light`.",
+      "**Do** honour reduced motion: no ink-settle, no stamp press, no chevron turn and no smooth scroll."
+    ],
+    "donts": [
+      "**Don't** use Signal Violet for anything except the cheapest running window and the text that names it.",
+      "**Don't** use continuous gradients or free tints in charts.",
+      "**Don't** replace the stamp with badges, pills or coloured chips, or the ink cross with checkmarks, toggles or sliders.",
+      "**Don't** set labels or headings in uppercase. Capitals belong to the stamp.",
+      "**Don't** round anything past 3px, apart from the perforation holes.",
+      "**Don't** cast shadows from anything printed on a card. Only cards and the ink button have depth.",
+      "**Don't** set readable text in `ror`. At about 2.7:1 on card stock it is a line colour, not a text colour."
+    ]
+  }
+}
