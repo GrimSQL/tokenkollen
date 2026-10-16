@@ -73,11 +73,22 @@ Ingen sajt räknar ut det med svenska elpriser. Det är luckan Tokenkollen fylle
   Claude Haiku 5.5, Gemini 2.5 Flash-Lite) bara 2-2,5 gånger dyrare än elen till ett RTX 4090,
   och med 32B-modell eller dyr kvart blir molnet billigare än elen. Det hade jag inte gissat.
 
+### 2026-10-16 15:35 - granskning och publicering
+
+- En fristående granskningsagent (impeccable finish reviewer) fick skärmbilderna och dömde **fix**
+  med sju fel: mörkt läge hade blivit den vanliga skiffergrå AI-panelen i stället för kuvert och
+  kartong, fälten saknade sifferrutorna som hela idén bygger på, violett (reserverat för
+  billigaste fönstret) hade smugit in som fokusfärg, första sifferrutan var öppen på ena sidan,
+  grafens etiketter blev 4 px höga på mobil eftersom SVG:n skalades ned, liggaren var tio rader
+  lång och animationerna följde inte de värden som stod i designkontraktet. Alla sju rättades,
+  och andra granskningen sa **ship**.
+- Publicerad på GitHub Pages: https://grimsql.github.io/tokenkollen/
+
 ## Tokens
 
 Fylls i löpande. Claude Code visar förbrukningen per session.
 
 | Datum | Var | Tokens | Hur det räknats |
 |---|---|---|---|
-| 2026-10-16 | molnet | - | fylls i när dagens session är klar |
+| 2026-10-16 | molnet | ≈ 24,4 miljoner | summerat ur Claude Codes sessionslogg (`usage` per svar, huvudsession och två granskningsagenter): 23,7 M cache-läsningar, 0,6 M cache-skrivningar, 0,1 M output, några hundra okachade input. Cache-läsningarna är samtalet som skickas om vid varje steg. |
 | 2026-10-16 | lokalt | 0 | ingen lokal modell användes |

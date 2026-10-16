@@ -3,6 +3,10 @@
 Till formuläret på https://projekt.sweclockers.com/asus/lamna-in (öppet till 30 november).
 Allt här är ett utkast. Skriv om det med egna ord där det inte låter som du.
 
+## Länk
+
+https://grimsql.github.io/tokenkollen/ (källkod och dagbok: https://github.com/GrimSQL/tokenkollen)
+
 ## Spår
 
 Verktyget du alltid saknat
@@ -52,7 +56,7 @@ Hela listan står i RESAN.md. Ett urval:
 ## Tokens
 
 - Lokalt: 0 (ingen lokal modell användes i bygget).
-- Molnet: fyll i från Claude Codes förbrukning när bygget är klart.
+- Molnet: ≈ 24,4 miljoner, summerat ur Claude Codes sessionslogg. Nästan allt (23,7 M) är cache-läsningar, alltså samtalet som skickas om vid varje steg; själva svaren var 0,1 M output-tokens.
 
 ## Bilder att ladda upp (1-10)
 
