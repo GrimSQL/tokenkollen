@@ -7,12 +7,12 @@ export const KONTROLLERAT = '2026-10-16';
 export const MOLN = [
   { id: 'gpt-6-astra', namn: 'GPT-6 Astra', bolag: 'OpenAI', in: 10.0, ut: 50.0, kalla: 'https://developers.openai.com/api/docs/pricing' },
   { id: 'claude-fable-5-1', namn: 'Claude Fable 5.1', bolag: 'Anthropic', in: 10.0, ut: 50.0, kalla: 'https://platform.claude.com/docs/en/about-claude/pricing' },
-  { id: 'claude-opus-5-5', namn: 'Claude Opus 5.5', bolag: 'Anthropic', in: 4.0, ut: 20.0, kalla: 'https://platform.claude.com/docs/en/about-claude/pricing' },
-  { id: 'gemini-3-1-pro', namn: 'Gemini 3.1 Pro', bolag: 'Google', in: 2.0, ut: 12.0, kalla: 'https://ai.google.dev/gemini-api/docs/pricing' },
-  { id: 'gpt-6-1-sol', namn: 'GPT-6.1 Sol', bolag: 'OpenAI', in: 2.0, ut: 10.0, kalla: 'https://developers.openai.com/api/docs/pricing' },
+  { id: 'claude-opus-5-5', urval: true, namn: 'Claude Opus 5.5', bolag: 'Anthropic', in: 4.0, ut: 20.0, kalla: 'https://platform.claude.com/docs/en/about-claude/pricing' },
+  { id: 'gemini-3-1-pro', urval: true, namn: 'Gemini 3.1 Pro', bolag: 'Google', in: 2.0, ut: 12.0, kalla: 'https://ai.google.dev/gemini-api/docs/pricing' },
+  { id: 'gpt-6-1-sol', urval: true, namn: 'GPT-6.1 Sol', bolag: 'OpenAI', in: 2.0, ut: 10.0, kalla: 'https://developers.openai.com/api/docs/pricing' },
   { id: 'claude-sonnet-5-5', namn: 'Claude Sonnet 5.5', bolag: 'Anthropic', in: 2.0, ut: 10.0, kalla: 'https://platform.claude.com/docs/en/about-claude/pricing' },
-  { id: 'gemini-3-8-flash', namn: 'Gemini 3.8 Flash', bolag: 'Google', in: 0.75, ut: 3.75, kalla: 'https://ai.google.dev/gemini-api/docs/pricing', not: 'Introduktionspris till 31 december 2026, sedan 1,50/7,50 USD.' },
-  { id: 'gpt-6-luna', namn: 'GPT-6 Luna', bolag: 'OpenAI', in: 0.10, ut: 0.50, kalla: 'https://developers.openai.com/api/docs/pricing' },
+  { id: 'gemini-3-8-flash', urval: true, namn: 'Gemini 3.8 Flash', bolag: 'Google', in: 0.75, ut: 3.75, kalla: 'https://ai.google.dev/gemini-api/docs/pricing', not: 'Introduktionspris till 31 december 2026, sedan 1,50/7,50 USD.' },
+  { id: 'gpt-6-luna', urval: true, namn: 'GPT-6 Luna', bolag: 'OpenAI', in: 0.10, ut: 0.50, kalla: 'https://developers.openai.com/api/docs/pricing' },
   { id: 'claude-haiku-5-5', namn: 'Claude Haiku 5.5', bolag: 'Anthropic', in: 0.10, ut: 0.50, kalla: 'https://platform.claude.com/docs/en/about-claude/pricing', not: 'Gäller prompter upp till 100 000 tokens.' },
   { id: 'gemini-2-5-flash-lite', namn: 'Gemini 2.5 Flash-Lite', bolag: 'Google', in: 0.10, ut: 0.40, kalla: 'https://ai.google.dev/gemini-api/docs/pricing' },
 ];

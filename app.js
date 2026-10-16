@@ -125,7 +125,7 @@ function spotFor(post) {
 }
 
 // A measured speed with a preset wattage is only half measured; say so.
-const stampelText = () => ({ uppskattat: 'Uppskattat', egna: 'Egna värden', matt: state.watt == null ? 'Mätt hastighet' : 'Mätt' })[state.kalla];
+const stampelText = () => ({ uppskattat: 'Uppskattat', egna: 'Egna värden', matt: (state.watt == null ? 'Mätt hastighet ' : 'Mätt ') + datumIStockholm(0) })[state.kalla];
 const kallText = () => ({ uppskattat: 'uppskattat', egna: 'egna värden', matt: state.watt == null ? 'hastighet mätt, effekt uppskattad' : 'mätt' })[state.kalla];
 
 // ---------- Computation ----------
@@ -202,9 +202,11 @@ function ritaSvar(r) {
 function ritaLiggare(r) {
   const kropp = $('liggare').tBodies[0];
   kropp.textContent = '';
+  const alla = $('liggare').classList.contains('alla');
   for (const m of MOLN) {
     const ut = m.ut * usdSek, inn = m.in * usdSek;
     const tr = document.createElement('tr');
+    if (!m.urval && !alla) tr.hidden = true;
     let mot = '<span class="matare-text">-</span>';
     if (r.totalt > 0) {
       const kvot = ut / r.totalt;
@@ -239,7 +241,10 @@ function ritaGraf(r) {
   const min = Math.min(...ore), max = Math.max(...ore);
   const steg = (v) => (max === min ? 4 : 1 + Math.min(6, Math.floor(((v - min) / (max - min)) * 7)));
 
-  const W = 960, H = 240, vank = 40, topp = 26, botten = 28;
+  // Drawn at the container's real width so labels stay 12px on a phone.
+  const W = Math.max(300, Math.round(graf.clientWidth || 960));
+  const H = W < 600 ? 220 : 240, vank = 34, topp = 26, botten = 28;
+  const etikettSteg = W < 600 ? 6 : 3;
   const bw = (W - vank) / k.length;
   // Round gridline step (10, 20, 25, 50, 100 ...) giving three to five lines.
   const ra = Math.max(10, max) / 5;
@@ -263,13 +268,14 @@ function ritaGraf(r) {
     const x = vank + n * bw, yy = y(ore[n]);
     s += `<rect class="${i >= 0 && n < i ? 'passerat' : 'ramp-' + steg(ore[n])}" x="${x + 0.6}" y="${yy}" width="${Math.max(1, bw - 1.2)}" height="${H - botten - yy}"/>`;
     const tim = q.start.toLocaleTimeString(SV, { hour: '2-digit', timeZone: TZ });
-    if (q.start.getMinutes() === 0 && Number(tim) % 3 === 0) {
-      s += `<text class="axel" x="${x}" y="${H - 10}">${Number(tim) === 0 && n > 0 ? 'i morgon' : tim}</text>`;
+    if (q.start.getMinutes() === 0 && Number(tim) % etikettSteg === 0) {
+      s += `<text class="axel" x="${x}" y="${H - 10}">${tim}</text>`;
     }
   });
   if (post.idag < k.length) {
     const xg = vank + post.idag * bw;
     s += `<line class="dagsgrans" x1="${xg}" x2="${xg}" y1="${topp - 6}" y2="${H - botten}"/>`;
+    s += `<text class="axel" x="${xg + 4}" y="${topp + 6}">i morgon</text>`;
   }
   if (i >= 0) {
     const xn = vank + (i + 0.5) * bw;
@@ -383,7 +389,7 @@ function bygg() {
   $('paslag').value = fmt(state.paslag, 1);
   $('nat').value = fmt(state.nat, 1);
   $('skatt').value = fmt(state.skatt, 1);
-  if (state.watt != null) $('watt').value = fmt(state.watt);
+  if (state.watt != null) $('watt').value = String(Math.round(state.watt));
   if (state.tps != null) $('tps').value = String(state.tps).replace('.', ',');
   ritaKallor();
 }
@@ -447,6 +453,19 @@ function koppla() {
   for (const [id, nyckel] of [['tok-lokalt', 'tokLokalt'], ['tok-moln', 'tokMoln']]) {
     $(id).addEventListener('input', (e) => { const v = tal(e.target.value); state[nyckel] = e.target.value.trim() === '' || !(v >= 0) ? null : v; rita(); });
   }
+  $('visa-alla').addEventListener('click', (e) => {
+    const t = $('liggare');
+    t.classList.toggle('alla');
+    const oppen = t.classList.contains('alla');
+    e.currentTarget.setAttribute('aria-expanded', String(oppen));
+    e.currentTarget.textContent = oppen ? 'Visa färre modeller' : `Visa alla ${MOLN.length} modeller`;
+    rita();
+  });
+  let bredd = 0;
+  new ResizeObserver(([e]) => {
+    const b = Math.round(e.contentRect.width);
+    if (Math.abs(b - bredd) > 8) { bredd = b; ritaGraf(rakna()); }
+  }).observe($('graf'));
   $('kopiera').addEventListener('click', async () => {
     const st = $('kopiera-status');
     try {

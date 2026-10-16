@@ -53,11 +53,11 @@
       <div class="falt-par">
         <div class="falt">
           <label for="watt">Effekt från vägguttaget <span class="enhet">W</span></label>
-          <input id="watt" name="watt" inputmode="decimal" maxlength="5">
+          <input id="watt" name="watt" class="kam" data-celler="4" inputmode="decimal" maxlength="4">
         </div>
         <div class="falt">
           <label for="tps">Hastighet <span class="enhet">tokens/s</span></label>
-          <input id="tps" name="tps" inputmode="decimal" maxlength="6">
+          <input id="tps" name="tps" class="kam" data-celler="5" inputmode="decimal" maxlength="5">
         </div>
       </div>
       <p class="falt-not" id="hardvara-not"></p>
@@ -130,6 +130,7 @@
           <tbody></tbody>
         </table>
       </div>
+      <button type="button" class="visa-alla" id="visa-alla" aria-expanded="false" aria-controls="liggare">Visa alla 10 modeller</button>
       <p class="falt-not" id="liggare-not"></p>
     </section>
 
