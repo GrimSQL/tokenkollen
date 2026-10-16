@@ -1,0 +1,516 @@
+@font-face {
+  font-family: 'Archivo';
+  src: url('fonts/archivo-latin.woff2') format('woff2');
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Archivo';
+  src: url('fonts/archivo-latin-ext.woff2') format('woff2');
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* The envelope is the utility blue, the cards are salmon card stock, every printed rule and
+   label is form dropout vermilion, every filled-in figure is blue-black ink. */
+:root {
+  --kuvert: oklch(0.42 0.135 258);
+  --kuvert-djup: oklch(0.34 0.12 260);
+  --kuvert-text: oklch(0.97 0.012 250);
+  --kuvert-text-2: oklch(0.86 0.04 252);
+  --kort: oklch(0.935 0.03 48);
+  --kort-falt: oklch(0.965 0.018 52);
+  --ror: oklch(0.66 0.16 37);
+  --ror-text: oklch(0.49 0.16 33);
+  --black: oklch(0.25 0.055 262);
+  --black-2: oklch(0.42 0.05 262);
+  --signal: oklch(0.5 0.22 305);
+  --signal-yta: oklch(0.5 0.22 305 / 0.14);
+  --ramp-1: oklch(0.88 0.035 252);
+  --ramp-2: oklch(0.8 0.055 254);
+  --ramp-3: oklch(0.71 0.075 256);
+  --ramp-4: oklch(0.61 0.09 258);
+  --ramp-5: oklch(0.51 0.1 260);
+  --ramp-6: oklch(0.41 0.1 261);
+  --ramp-7: oklch(0.31 0.09 262);
+  --skugga: 0 1px 1px oklch(0 0 0 / 0.18), 0 14px 32px -12px oklch(0 0 0 / 0.4);
+  --radie: 3px;
+  --mellan: clamp(1rem, 2.4vw, 1.75rem);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --kuvert: oklch(0.2 0.045 262);
+    --kuvert-djup: oklch(0.16 0.04 262);
+    --kuvert-text: oklch(0.95 0.012 60);
+    --kuvert-text-2: oklch(0.78 0.03 255);
+    --kort: oklch(0.27 0.035 262);
+    --kort-falt: oklch(0.225 0.035 262);
+    --ror: oklch(0.62 0.13 40);
+    --ror-text: oklch(0.78 0.12 45);
+    --black: oklch(0.95 0.015 60);
+    --black-2: oklch(0.8 0.025 60);
+    --signal: oklch(0.74 0.17 305);
+    --signal-yta: oklch(0.74 0.17 305 / 0.18);
+    --ramp-1: oklch(0.36 0.05 258);
+    --ramp-2: oklch(0.44 0.065 256);
+    --ramp-3: oklch(0.53 0.075 254);
+    --ramp-4: oklch(0.62 0.08 252);
+    --ramp-5: oklch(0.71 0.075 250);
+    --ramp-6: oklch(0.8 0.06 248);
+    --ramp-7: oklch(0.89 0.04 246);
+    --skugga: 0 1px 1px oklch(0 0 0 / 0.4), 0 14px 32px -12px oklch(0 0 0 / 0.7);
+    color-scheme: dark;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  background: var(--kuvert);
+  scrollbar-color: var(--ror) var(--kuvert-djup);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--kuvert);
+  color: var(--black);
+  font-family: 'Archivo', system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.55;
+  font-variant-numeric: tabular-nums;
+}
+
+::selection { background: var(--ror); color: var(--kort-falt); }
+
+a { color: inherit; text-decoration-color: var(--ror); text-decoration-thickness: 1.5px; text-underline-offset: 0.18em; }
+a:hover { text-decoration-thickness: 2.5px; }
+
+:focus-visible { outline: 2.5px solid var(--signal); outline-offset: 2px; }
+
+code {
+  font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  font-size: 0.88em;
+  background: var(--kort-falt);
+  padding: 0.05em 0.3em;
+  border-radius: 2px;
+}
+
+h1, h2, h3 {
+  font-stretch: 118%;
+  font-weight: 750;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+  margin: 0;
+}
+h1, h2 { font-size: clamp(1.35rem, 2.1vw, 1.7rem); }
+h3 { font-size: 1.02rem; margin-top: 1.9rem; margin-bottom: 0.6rem; }
+
+p { margin: 0 0 0.9rem; max-width: 68ch; }
+
+.sr {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* ---- Envelope (header and footer) ---- */
+.kuvert { color: var(--kuvert-text); }
+.kuvert-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(1.4rem, 4vw, 2.6rem) 16px 1.2rem;
+}
+@media (min-width: 700px) { .kuvert-inner { padding-inline: 32px; } }
+
+.ordmarke { margin: 0 0 0.4rem; }
+.ordmarke-namn {
+  font-stretch: 125%;
+  font-weight: 850;
+  font-size: clamp(2.2rem, 6vw, 4.1rem);
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+.kuvert-rad { color: var(--kuvert-text-2); font-size: 1.08rem; max-width: 52ch; margin-bottom: 1.1rem; }
+.kuvert-nav { display: flex; flex-wrap: wrap; gap: 0.35rem 1.4rem; font-weight: 600; font-size: 0.95rem; }
+.kuvert-nav a { color: var(--kuvert-text); text-decoration-color: var(--ror); }
+.kuvert-fot { margin-top: 1rem; font-size: 0.9rem; }
+.kuvert-fot .kuvert-inner { padding-block: 2rem 3rem; }
+.kuvert-fot p { color: var(--kuvert-text-2); }
+.kuvert-fot a { color: var(--kuvert-text); }
+
+/* ---- Card sheet layout ---- */
+.blad {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0.6rem 16px 1rem;
+  display: grid;
+  gap: var(--mellan);
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "svar" "dator" "dygn" "matt" "tavling" "metod";
+}
+.kort-dator { grid-area: dator; }
+.kort-svar { grid-area: svar; }
+.kort-dygn { grid-area: dygn; }
+.kort-matt { grid-area: matt; }
+.kort-tavling { grid-area: tavling; }
+.kort-metod { grid-area: metod; }
+
+@media (min-width: 700px) { .blad { padding-inline: 32px; } }
+@media (min-width: 1000px) {
+  .blad {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-areas:
+      "dator dator dator dator dator svar svar svar svar svar svar svar"
+      "dygn dygn dygn dygn dygn dygn dygn dygn dygn dygn dygn dygn"
+      "matt matt matt matt matt matt tavling tavling tavling tavling tavling tavling"
+      "metod metod metod metod metod metod metod metod metod metod metod metod";
+    align-items: start;
+  }
+  .kort-matt, .kort-tavling { align-self: stretch; }
+}
+
+.kort {
+  position: relative;
+  background: var(--kort);
+  border-radius: var(--radie);
+  box-shadow: var(--skugga);
+  padding: clamp(1.1rem, 2.6vw, 1.9rem);
+  padding-top: calc(clamp(1.1rem, 2.6vw, 1.9rem) + 6px);
+  min-width: 0;
+}
+/* Perforated top edge: a row of punched holes showing the envelope through the card. */
+.kort::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 12px;
+  background: radial-gradient(circle at 50% 0, var(--kuvert) 3px, transparent 3.5px) 0 0 / 14px 12px repeat-x;
+  border-radius: var(--radie) var(--radie) 0 0;
+  pointer-events: none;
+}
+
+.kort-huvud {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 2px solid var(--ror);
+  padding-bottom: 0.65rem;
+  margin-bottom: 1.2rem;
+}
+.blankett {
+  margin: 0;
+  color: var(--ror-text);
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-stretch: 112%;
+  white-space: nowrap;
+}
+
+/* ---- Form fields, printed in dropout ink ---- */
+.falt-grupp { border: 0; margin: 0 0 1.1rem; padding: 0; min-width: 0; }
+.falt-grupp legend, .falt label:first-child {
+  display: block;
+  color: var(--ror-text);
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-stretch: 108%;
+  margin-bottom: 0.35rem;
+  padding: 0;
+}
+.enhet { font-weight: 450; }
+
+.falt { margin-bottom: 1rem; min-width: 0; }
+.falt-par { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 0.9rem; align-items: end; }
+.falt-trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 0.7rem; }
+@media (max-width: 460px) { .falt-trio { grid-template-columns: 1fr; } }
+
+input:not([type]), input[inputmode], select, textarea {
+  width: 100%;
+  font: inherit;
+  color: var(--black);
+  background: var(--kort-falt);
+  border: 1.5px solid var(--ror);
+  border-radius: 2px;
+  padding: 0.5rem 0.65rem;
+  caret-color: var(--signal);
+  min-height: 2.75rem;
+}
+input[inputmode] {
+  font-size: 1.35rem;
+  font-weight: 650;
+  font-stretch: 105%;
+  letter-spacing: 0.02em;
+}
+input::placeholder, textarea::placeholder { color: var(--black-2); opacity: 0.8; }
+textarea { font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace; font-size: 0.85rem; line-height: 1.5; resize: vertical; }
+select {
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--ror-text) 50%),
+    linear-gradient(-45deg, transparent 50%, var(--ror-text) 50%);
+  background-position: calc(100% - 1.15rem) 55%, calc(100% - 0.8rem) 55%;
+  background-size: 0.36rem 0.36rem;
+  background-repeat: no-repeat;
+  padding-right: 2.2rem;
+  font-weight: 550;
+}
+input:hover, select:hover, textarea:hover { border-color: var(--ror-text); }
+input[readonly], textarea[readonly] { background: transparent; }
+
+.falt-not { color: var(--black-2); font-size: 0.86rem; margin-top: -0.3rem; }
+
+/* Tick boxes: the card's printed squares, filled with an ink cross when chosen. */
+.kryss-rad { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.kryss { position: relative; display: inline-flex; align-items: center; cursor: pointer; }
+.kryss input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.kryss span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.6rem;
+  padding: 0.35rem 0.8rem 0.35rem 0.55rem;
+  border: 1.5px solid var(--ror);
+  border-radius: 2px;
+  background: var(--kort-falt);
+  font-weight: 650;
+  user-select: none;
+}
+.kryss span::before {
+  content: "";
+  flex: none;
+  width: 1.05rem;
+  height: 1.05rem;
+  border: 1.5px solid var(--ror);
+  background: var(--kort-falt);
+}
+.kryss input:checked + span::before {
+  background:
+    linear-gradient(45deg, transparent 43%, var(--black) 43%, var(--black) 57%, transparent 57%),
+    linear-gradient(-45deg, transparent 43%, var(--black) 43%, var(--black) 57%, transparent 57%),
+    var(--kort-falt);
+}
+.kryss input:checked + span { border-color: var(--ror-text); }
+.kryss input:focus-visible + span { outline: 2.5px solid var(--signal); outline-offset: 2px; }
+.kryss small { font-weight: 450; color: var(--black-2); font-size: 0.78rem; }
+.kryss-lang { margin: 0.2rem 0 0.9rem; }
+.kryss-lang span { font-weight: 500; align-items: flex-start; padding-block: 0.55rem; }
+.kryss-lang span::before { margin-top: 0.15rem; }
+
+.tillagg { border-top: 1px dashed var(--ror); padding-top: 0.75rem; margin-top: 0.4rem; margin-bottom: 0.6rem; }
+.tillagg summary {
+  cursor: pointer;
+  font-weight: 650;
+  color: var(--black);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.2rem;
+}
+.tillagg summary::-webkit-details-marker { display: none; }
+.tillagg summary::before {
+  content: "";
+  width: 0.5rem; height: 0.5rem;
+  border-right: 2px solid var(--ror-text);
+  border-bottom: 2px solid var(--ror-text);
+  transform: rotate(-45deg);
+  transition: transform 160ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.tillagg[open] summary::before { transform: rotate(45deg); }
+.tillagg[open] summary { margin-bottom: 0.7rem; }
+
+.kort-fot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1rem;
+  border-top: 2px solid var(--ror);
+  padding-top: 1rem;
+  margin-top: 0.6rem;
+}
+.kort-fot .falt-not { margin: 0; flex: 1 1 14rem; }
+
+.knapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.9rem;
+  padding: 0.55rem 1.2rem;
+  border: 0;
+  border-radius: 2px;
+  background: var(--black);
+  color: var(--kort);
+  font: inherit;
+  font-weight: 700;
+  font-stretch: 110%;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 1px 0 var(--ror), 0 6px 14px -8px oklch(0 0 0 / 0.35);
+  transition: transform 140ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 140ms;
+}
+.knapp:hover { transform: translateY(-1px); box-shadow: 0 2px 0 var(--ror), 0 10px 18px -8px oklch(0 0 0 / 0.35); }
+.knapp:active { transform: translateY(1px); box-shadow: 0 0 0 var(--ror); }
+.knapp:disabled { background: transparent; color: var(--black-2); box-shadow: inset 0 0 0 1.5px var(--ror); cursor: not-allowed; transform: none; }
+
+/* ---- The answer card ---- */
+.stampel {
+  margin: 0;
+  font-stretch: 125%;
+  font-weight: 850;
+  font-size: 0.86rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.18rem 0.55rem 0.12rem;
+  border: 2.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-4deg);
+  color: var(--ror-text);
+  white-space: nowrap;
+}
+.stampel[data-lage="matt"] { color: var(--black); }
+.stampel[data-lage="egna"] { color: var(--black-2); }
+.stampel.prassad { animation: stampla 260ms cubic-bezier(0.2, 0.9, 0.25, 1); }
+@keyframes stampla {
+  0% { transform: rotate(-9deg) scale(1.35); opacity: 0.2; }
+  100% { transform: rotate(-4deg) scale(1); opacity: 1; }
+}
+
+.svar-etikett { color: var(--ror-text); font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; }
+.svar-rad { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0.4rem 1.2rem; margin-bottom: 0.4rem; }
+.svar-siffror { margin: 0; display: flex; align-items: flex-end; gap: 0.6rem; }
+.rutor { display: inline-flex; align-items: flex-end; }
+.ruta {
+  display: inline-grid;
+  place-items: center;
+  width: 0.86em;
+  height: 1.2em;
+  border: 2px solid var(--ror);
+  border-right-width: 0;
+  background: var(--kort-falt);
+  font-size: clamp(3rem, 7.4vw, 5.6rem);
+  font-weight: 760;
+  font-stretch: 100%;
+  line-height: 1;
+  color: var(--black);
+}
+.ruta:last-of-type { border-right-width: 2px; }
+.ruta.tom { color: var(--ror); font-weight: 400; }
+.komma {
+  font-size: clamp(3rem, 7.4vw, 5.6rem);
+  font-weight: 760;
+  line-height: 1;
+  width: 0.3em;
+  text-align: center;
+  align-self: flex-end;
+  padding-bottom: 0.1em;
+  border-bottom: 2px solid var(--ror);
+}
+.komma + .ruta { border-left-width: 2px; }
+.ruta.ny { animation: blacka 200ms cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: calc(var(--i) * 28ms); }
+@keyframes blacka { from { opacity: 0.15; transform: translateY(3px); } to { opacity: 1; transform: none; } }
+.svar-enhet { font-size: clamp(1.4rem, 2.6vw, 2rem); font-weight: 700; font-stretch: 112%; padding-bottom: 0.25em; }
+.svar-forval { margin: 0 0 0.5rem; color: var(--black-2); font-size: 0.95rem; }
+.svar-forval s { text-decoration-color: var(--ror); text-decoration-thickness: 2px; }
+.svar-uppdelning { font-size: 1rem; color: var(--black-2); margin-bottom: 0.3rem; }
+.svar-uppdelning b { color: var(--black); font-weight: 650; }
+.svar-status { font-size: 0.88rem; color: var(--ror-text); min-height: 1.3em; }
+
+.liggare-rubrik { margin-top: 1.3rem; }
+.liggare-wrap { overflow-x: auto; margin: 0 -0.2rem; padding: 0 0.2rem; }
+.liggare { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+.liggare th {
+  text-align: left;
+  color: var(--ror-text);
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-bottom: 2px solid var(--ror);
+  padding: 0 0.5rem 0.4rem 0;
+  white-space: nowrap;
+}
+.liggare td { border-bottom: 1px solid color-mix(in oklch, var(--ror) 45%, transparent); padding: 0.45rem 0.5rem 0.45rem 0; vertical-align: middle; }
+.liggare .tal { text-align: right; white-space: nowrap; }
+.liggare td.tal { font-weight: 600; }
+.liggare .bolag { display: block; color: var(--black-2); font-size: 0.78rem; }
+.liggare .modell { font-weight: 650; }
+.liggare .mot { width: 38%; min-width: 9.5rem; }
+@media (max-width: 560px) {
+  .liggare .kol-in { display: none; }
+  .liggare .mot { width: 34%; min-width: 6.5rem; }
+  .liggare .modell { white-space: nowrap; }
+}
+.matare { position: relative; height: 1.1rem; margin-bottom: 0.15rem; }
+.matare::before { content: ""; position: absolute; left: 25%; top: -0.15rem; bottom: -0.15rem; width: 2px; background: var(--black); }
+.matare i { position: absolute; top: 0.2rem; height: 0.7rem; border-radius: 1px; }
+.matare i.dyrare { left: 25%; background: var(--ramp-6); }
+.matare i.billigare { right: 75%; background: var(--ror); }
+.matare-text { font-size: 0.8rem; font-weight: 600; white-space: nowrap; }
+.matare-text.billigare { color: var(--ror-text); }
+
+/* ---- Price strip ---- */
+.dygn-styr { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0.5rem 2rem; margin-bottom: 0.6rem; }
+.dygn-styr .falt-grupp { margin-bottom: 0.4rem; }
+.dygn-svar { font-size: 1.08rem; margin-bottom: 0.7rem; max-width: 60ch; }
+.dygn-svar mark { background: var(--signal-yta); color: var(--signal); font-weight: 700; padding: 0 0.2em; border-radius: 2px; }
+.graf { width: 100%; }
+.graf svg { display: block; width: 100%; height: auto; overflow: visible; }
+.graf .axel { fill: var(--black-2); font-size: 12px; font-family: inherit; font-variant-numeric: tabular-nums; }
+.graf .linje { stroke: color-mix(in oklch, var(--ror) 55%, transparent); stroke-width: 1; }
+.graf .nu { stroke: var(--black); stroke-width: 2; }
+.graf .nu-text { fill: var(--black); font-size: 12px; font-weight: 700; }
+.graf .fonster { fill: var(--signal-yta); stroke: var(--signal); stroke-width: 2; }
+.graf .fonster-text { fill: var(--signal); font-size: 12px; font-weight: 750; }
+.graf .passerat { fill: color-mix(in oklch, var(--ror) 30%, transparent); }
+.graf .dagsgrans { stroke: var(--ror); stroke-width: 1.5; stroke-dasharray: 4 3; }
+.graf .ramp-1 { fill: var(--ramp-1); } .graf .ramp-2 { fill: var(--ramp-2); }
+.graf .ramp-3 { fill: var(--ramp-3); } .graf .ramp-4 { fill: var(--ramp-4); }
+.graf .ramp-5 { fill: var(--ramp-5); } .graf .ramp-6 { fill: var(--ramp-6); }
+.graf .ramp-7 { fill: var(--ramp-7); }
+.graf-tom { padding: 2rem 0; color: var(--black-2); }
+
+.tabell-wrap { max-height: 22rem; overflow: auto; }
+.pristabell { border-collapse: collapse; font-size: 0.9rem; }
+.pristabell th, .pristabell td { padding: 0.25rem 1.2rem 0.25rem 0; text-align: left; border-bottom: 1px solid color-mix(in oklch, var(--ror) 40%, transparent); }
+.pristabell th { color: var(--ror-text); font-weight: 600; font-size: 0.78rem; }
+.pristabell td + td { text-align: right; }
+
+/* ---- Measured, contest, method ---- */
+.matt-resultat { min-height: 1.4rem; margin-bottom: 0.4rem; }
+.matt-resultat dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr)); gap: 0.6rem 1rem; margin: 0 0 0.6rem; }
+.matt-resultat dt { color: var(--ror-text); font-size: 0.78rem; font-weight: 600; }
+.matt-resultat dd { margin: 0; font-size: 1.5rem; font-weight: 720; font-stretch: 105%; }
+.matt-resultat .fel { color: var(--ror-text); }
+
+.rakning { margin: 0 0 0.5rem; padding-left: 1.4rem; max-width: 80ch; }
+.rakning li { margin-bottom: 0.7rem; padding-left: 0.3rem; }
+.rakning li::marker { color: var(--ror-text); font-weight: 700; }
+.rakning .formel { display: block; font-size: 1.05rem; font-weight: 600; }
+.rakning .formel b { font-weight: 760; }
+.forbehall, .kallor { margin: 0; padding-left: 1.2rem; max-width: 80ch; }
+.forbehall li, .kallor li { margin-bottom: 0.5rem; }
+.forbehall li::marker, .kallor li::marker { color: var(--ror); }
+.kort-metod h3 { margin-top: 1.4rem; }
+
+@media (min-width: 1000px) {
+  .kort-metod { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); column-gap: 3rem; }
+  .kort-metod .kort-huvud, .kort-metod .rakning { grid-column: 1 / -1; }
+  .kort-metod .rakning { columns: 2; column-gap: 3rem; max-width: none; }
+  .kort-metod .rakning li { break-inside: avoid; }
+  .kort-metod h3 { grid-row: 3; }
+  .kort-metod h3 + ul { grid-row: 4; }
+  .kort-metod h3:first-of-type, .kort-metod h3:first-of-type + ul { grid-column: 1; }
+  .kort-metod h3:last-of-type, .kort-metod h3:last-of-type + ul { grid-column: 2; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

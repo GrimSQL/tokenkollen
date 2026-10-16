@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tokenkollen - vad kostar en lokal AI-token i el?</title>
+  <meta name="description" content="Räkna ut elkostnaden per miljon tokens för din lokala AI med dagens spotpris i SE1-SE4, och jämför med molnets priser.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="preload" href="fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header class="kuvert">
+    <div class="kuvert-inner">
+      <p class="ordmarke"><span class="ordmarke-namn">Tokenkollen</span></p>
+      <p class="kuvert-rad">Vad kostar en lokal AI-token i el? Dagens spotpris, kvart för kvart, mot molnets listpriser.</p>
+      <nav class="kuvert-nav" aria-label="På sidan">
+        <a href="#dygn">Dygnets elpris</a>
+        <a href="#matt">Klistra in från Ollama</a>
+        <a href="#tavling">Redovisa till tävlingen</a>
+        <a href="#metod">Så räknar vi</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="blad">
+    <form class="kort kort-dator" id="dator" aria-labelledby="dator-rubrik" autocomplete="off">
+      <div class="kort-huvud">
+        <h1 id="dator-rubrik">Din dator</h1>
+        <p class="blankett">Blankett TK-1</p>
+      </div>
+
+      <fieldset class="falt-grupp">
+        <legend>Elområde</legend>
+        <div class="kryss-rad" id="omraden"></div>
+      </fieldset>
+
+      <div class="falt falt-bred">
+        <label for="hardvara">Hårdvara</label>
+        <select id="hardvara" name="hardvara"></select>
+      </div>
+
+      <fieldset class="falt-grupp">
+        <legend>Modellens storlek (Q4)</legend>
+        <div class="kryss-rad">
+          <label class="kryss"><input type="radio" name="storlek" value="8b" checked><span>7-8B</span></label>
+          <label class="kryss"><input type="radio" name="storlek" value="32b"><span>30-32B</span></label>
+        </div>
+      </fieldset>
+
+      <div class="falt-par">
+        <div class="falt">
+          <label for="watt">Effekt från vägguttaget <span class="enhet">W</span></label>
+          <input id="watt" name="watt" inputmode="decimal" maxlength="5">
+        </div>
+        <div class="falt">
+          <label for="tps">Hastighet <span class="enhet">tokens/s</span></label>
+          <input id="tps" name="tps" inputmode="decimal" maxlength="6">
+        </div>
+      </div>
+      <p class="falt-not" id="hardvara-not"></p>
+
+      <fieldset class="falt-grupp">
+        <legend>Elpriset</legend>
+        <div class="falt falt-bred">
+          <label for="kor">Kör</label>
+          <select id="kor" name="kor">
+            <option value="nu">just nu</option>
+            <option value="snitt" selected>till dygnets snittpris</option>
+            <option value="billig">under dygnets billigaste timmar</option>
+          </select>
+        </div>
+        <label class="kryss kryss-lang"><input type="checkbox" id="allt" name="allt" checked><span>Räkna med elhandelns påslag, nätavgift, energiskatt och moms</span></label>
+        <details class="tillagg">
+          <summary>Ändra avgifterna</summary>
+          <div class="falt-trio">
+            <div class="falt"><label for="paslag">Påslag <span class="enhet">öre/kWh</span></label><input id="paslag" inputmode="decimal"></div>
+            <div class="falt"><label for="nat">Nätavgift <span class="enhet">öre/kWh</span></label><input id="nat" inputmode="decimal"></div>
+            <div class="falt"><label for="skatt">Energiskatt <span class="enhet">öre/kWh</span></label><input id="skatt" inputmode="decimal"></div>
+          </div>
+          <div class="falt falt-bred">
+            <label for="egen-spot">Eget spotpris <span class="enhet">öre/kWh, lämna tomt för dagens</span></label>
+            <input id="egen-spot" inputmode="decimal">
+          </div>
+          <p class="falt-not">Alla belopp exklusive moms. Nätavgiften skiljer mellan nätbolagen, så ta siffran från din egen elräkning.</p>
+        </details>
+        <details class="tillagg">
+          <summary>Räkna med datorns inköpspris</summary>
+          <div class="falt-trio">
+            <div class="falt"><label for="hw-pris">Inköpspris <span class="enhet">kr</span></label><input id="hw-pris" inputmode="decimal"></div>
+            <div class="falt"><label for="hw-ar">Livslängd <span class="enhet">år</span></label><input id="hw-ar" inputmode="decimal" value="4"></div>
+            <div class="falt"><label for="hw-tim">AI-körning <span class="enhet">h/dygn</span></label><input id="hw-tim" inputmode="decimal" value="2"></div>
+          </div>
+          <p class="falt-not">Fördelas på alla tokens datorn hinner generera under livslängden. Tomt pris räknar bara el.</p>
+        </details>
+      </fieldset>
+
+      <div class="kort-fot">
+        <a class="knapp" href="#matt" id="till-matt">Klistra in från Ollama</a>
+        <p class="falt-not">Dina egna mätvärden ersätter förvalen.</p>
+      </div>
+    </form>
+
+    <section class="kort kort-svar" aria-labelledby="svar-rubrik">
+      <div class="kort-huvud">
+        <h2 id="svar-rubrik">Avläsning</h2>
+        <p class="stampel" id="stampel" data-lage="uppskattat">Uppskattat</p>
+      </div>
+      <p class="svar-etikett" id="svar-etikett">Elkostnad per miljon genererade tokens</p>
+      <div class="svar-rad" aria-live="polite" aria-atomic="true">
+        <p class="svar-siffror" id="svar-siffror"><span class="sr" id="svar-text"></span><span class="rutor" id="svar-rutor" aria-hidden="true"></span><span class="svar-enhet">kr</span></p>
+        <p class="svar-forval" id="svar-forval" hidden></p>
+      </div>
+      <p class="svar-uppdelning" id="svar-uppdelning"></p>
+      <p class="svar-status" id="svar-status" role="status"></p>
+
+      <h3 class="liggare-rubrik">Samma miljon tokens i molnet</h3>
+      <div class="liggare-wrap">
+        <table class="liggare" id="liggare">
+          <thead>
+            <tr>
+              <th scope="col">Modell</th>
+              <th scope="col" class="tal">Output</th>
+              <th scope="col" class="tal kol-in">Input</th>
+              <th scope="col" class="mot">Mot din el</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="falt-not" id="liggare-not"></p>
+    </section>
+
+    <section class="kort kort-dygn" id="dygn" aria-labelledby="dygn-rubrik">
+      <div class="kort-huvud">
+        <h2 id="dygn-rubrik">Dygnets elpris</h2>
+        <p class="blankett" id="dygn-omrade"></p>
+      </div>
+      <div class="dygn-styr">
+        <fieldset class="falt-grupp">
+          <legend>Jobbets längd</legend>
+          <div class="kryss-rad">
+            <label class="kryss"><input type="radio" name="langd" value="4"><span>1 h</span></label>
+            <label class="kryss"><input type="radio" name="langd" value="12" checked><span>3 h</span></label>
+            <label class="kryss"><input type="radio" name="langd" value="24"><span>6 h</span></label>
+          </div>
+        </fieldset>
+        <p class="dygn-svar" id="dygn-svar"></p>
+      </div>
+      <div class="graf" id="graf"></div>
+      <details class="tillagg">
+        <summary>Visa priserna som tabell</summary>
+        <div class="tabell-wrap"><table class="pristabell" id="pristabell"></table></div>
+      </details>
+    </section>
+
+    <section class="kort kort-matt" id="matt" aria-labelledby="matt-rubrik">
+      <div class="kort-huvud">
+        <h2 id="matt-rubrik">Mätt på din dator</h2>
+        <p class="blankett">Blankett TK-2</p>
+      </div>
+      <p>Kör <code>ollama run din-modell --verbose</code>, ställ en fråga och klistra in det som skrivs ut efteråt. Tidsraderna från llama.cpp och LM Studios <code>tok/sec</code>-rad går också bra. Flera körningar på en gång summeras.</p>
+      <div class="falt falt-bred">
+        <label for="klistra">Utskrift från körningen</label>
+        <textarea id="klistra" rows="7" spellcheck="false" placeholder="eval count:    512 token(s)&#10;eval rate:     45.31 tokens/s"></textarea>
+      </div>
+      <div class="matt-resultat" id="matt-resultat" role="status"></div>
+      <div class="kort-fot">
+        <button type="button" class="knapp" id="anvand" disabled>Använd hastigheten</button>
+        <p class="falt-not">Effekten syns inte i utskriften. Läs den på en energimätare i vägguttaget, eller låt förvalet stå.</p>
+      </div>
+    </section>
+
+    <section class="kort kort-tavling" id="tavling" aria-labelledby="tavling-rubrik">
+      <div class="kort-huvud">
+        <h2 id="tavling-rubrik">Redovisa till tävlingen</h2>
+        <p class="blankett">Blankett TK-3</p>
+      </div>
+      <p>SweClockers tävling <a href="https://projekt.sweclockers.com/asus">Gick inte. Nu går det.</a> vill ha tokens i två tal: bearbetade lokalt och betalda i molnet. Fyll i dina, så skriver kortet en färdig rad med BB-kod för forumtråden.</p>
+      <div class="falt-par">
+        <div class="falt"><label for="tok-lokalt">Tokens lokalt</label><input id="tok-lokalt" inputmode="numeric"></div>
+        <div class="falt"><label for="tok-moln">Tokens i molnet</label><input id="tok-moln" inputmode="numeric"></div>
+      </div>
+      <div class="falt falt-bred">
+        <label for="bbkod">BB-kod</label>
+        <textarea id="bbkod" rows="7" readonly spellcheck="false"></textarea>
+      </div>
+      <div class="kort-fot">
+        <button type="button" class="knapp" id="kopiera">Kopiera BB-koden</button>
+        <p class="falt-not" id="kopiera-status" role="status"></p>
+      </div>
+    </section>
+
+    <section class="kort kort-metod" id="metod" aria-labelledby="metod-rubrik">
+      <div class="kort-huvud">
+        <h2 id="metod-rubrik">Så räknar vi</h2>
+        <p class="blankett">Med dina siffror</p>
+      </div>
+      <ol class="rakning" id="rakning"></ol>
+      <h3>Det här räknas inte</h3>
+      <ul class="forbehall">
+        <li>Kvalitet. En lokal 8B-modell gör inte samma jobb som Claude Opus 5.5 eller GPT-6 Astra. Jämförelsen gäller vad tokens kostar, inte vad de är värda.</li>
+        <li>Inläsning av prompten. Lokala datorer läser prompten mycket snabbare än de skriver, så den kostar lite el. Molnets input-pris står i en egen kolumn.</li>
+        <li>Tomgång. Datorn drar ström även när den väntar. Räkna med den genom att mäta effekten över en hel arbetssession.</li>
+        <li>Delar av Norrland har 9,6 öre lägre energiskatt per kWh. Ändra energiskatten under Ändra avgifterna om det gäller dig.</li>
+      </ul>
+      <h3>Källor</h3>
+      <ul class="kallor" id="kallor"></ul>
+    </section>
+  </main>
+
+  <footer class="kuvert kuvert-fot">
+    <div class="kuvert-inner">
+      <p>Tokenkollen räknar allt i din webbläsare. Inga uppgifter skickas någonstans. Byggd med Claude Code för SweClockers AI-tävling hösten 2026, och hela resan finns i <a href="RESAN.md">RESAN.md</a>.</p>
+      <p>Archivo-typsnittet används under SIL Open Font License.</p>
+    </div>
+  </footer>
+</body>
+</html>
