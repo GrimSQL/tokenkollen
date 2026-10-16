@@ -2,7 +2,7 @@
 
 <!-- impeccable:product-schema 1 -->
 
-> Viktor hoppade över intervjun ("ja kör"). Allt nedan som inte står i tävlingsvillkoren är
+> TeknikHemmet hoppade över intervjun ("ja kör"). Allt nedan som inte står i tävlingsvillkoren är
 > härlett från uppdraget och märkt *(antagande)*.
 
 ## Platform

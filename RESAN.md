@@ -32,8 +32,8 @@ Ingen sajt räknar ut det med svenska elpriser. Det är luckan Tokenkollen fylle
 
 ### 2026-10-16 15:10 - idé och priser
 
-- Viktor sa "ja kör" och hoppade över frågorna, så idén valdes av AI:n utifrån tävlingens
-  regler. Ärligt redovisat: idén är maskinens, valet att köra på den är Viktors.
+- Jag sa "ja kör" och hoppade över frågorna, så idén valdes av AI:n utifrån tävlingens
+  regler. Ärligt redovisat: idén är maskinens, valet att köra på den är mitt.
 - **Fel 3:** Prisjämförelsesajterna för molnpriser motsade varandra. Samma modell
   (GPT-5.6 Sol) stod som 5 USD per miljon input-tokens på en sajt och 4 USD på en annan.
   Lösning: bara tjänsternas egna prissidor används, och varje pris visas med källa och datum.

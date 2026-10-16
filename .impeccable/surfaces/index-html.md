@@ -16,7 +16,7 @@ on their hardware in their elområde, next to cloud list prices, and paste it in
 Proof is the open arithmetic: every figure shows the inputs it came from. Constraints: no invented
 benchmarks; presets are labelled estimates; cloud prices carry source and date.
 
-Decision note: Viktor skipped the questions ("ja kör"), so the assigned direction was built without a
+Decision note: the owner skipped the questions ("ja kör"), so the assigned direction was built without a
 decision round. Grounded list, by resonance: 1 EU-energimärket A-G, 2 elräkningen, 3 SVT Text-TV
 elpris, 4 Ferraris-elmätaren, 5 ICA-kvittot, 6 tidningens testtabell, 7 elbolagets avläsningskort.
 Challengers: doujin catalog (declined), warm consumer app (declined), ticket wallet (declined),
@@ -61,4 +61,4 @@ single stamp press (scale 1.08 to 1, rotate -4deg). Reduced motion: no movement,
 
 ## Unresolved
 
-Hosting and public URL are Viktor's call.
+Hosting and public URL are the owner's call.
